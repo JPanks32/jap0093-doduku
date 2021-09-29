@@ -21,9 +21,11 @@ class CreateTest(TestCase):
     
     
     def test100_010_CreateWithThreeParams(self):
-        expectedResult = {'grid','status', 'integrity'}.keys()
+        expectedResult = {'grid': '','status': '', 'integrity': ''}
+        expectedResult = expectedResult.keys()
         parms = {'op': 'create', 'level' : '1'}
-        actualResult = create._create(parms).keys()
+        actualResult = create._create(parms)
+        actualResult = actualResult.keys()
         self.assertDictEqual(expectedResult, actualResult)
 
         
