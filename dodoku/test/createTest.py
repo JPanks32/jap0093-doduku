@@ -66,7 +66,6 @@ class CreateTest(TestCase):
         expectedResult["integrity"] = integrity
         parms = {'op': 'create', 'level' : '2'}
         actualResult = create._create(parms)
-        print(actualResult)
         self.assertEqual(expectedResult['grid'], actualResult['grid'])
         
     def test_Create_030_Lvl2status(self):
@@ -97,7 +96,6 @@ class CreateTest(TestCase):
         expectedResult["integrity"] = integrity
         parms = {'op': 'create', 'level' : '2'}
         actualResult = create._create(parms)
-        print(actualResult)
         self.assertEqual(expectedResult['status'], actualResult['status'])
         
         
