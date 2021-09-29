@@ -1,18 +1,13 @@
-'''
-Created on Sep 29, 2021
 
-@author: panke
-'''
 import unittest
+import dodoku.info as info
+
+class InfoTest(unittest.TestCase):
 
 
-class Test(unittest.TestCase):
+    def test_Info_010_ShouldReturnMyUsername(self):
+        expectedResult = {'info': 'jap0093'}
+        parms = {'op': 'info'}
+        actualResult = info._info(parms)
+        self.assertDictEqual(expectedResult, actualResult)
 
-
-    def testName(self):
-        pass
-
-
-if __name__ == "__main__":
-    #import sys;sys.argv = ['', 'Test.testName']
-    unittest.main()
