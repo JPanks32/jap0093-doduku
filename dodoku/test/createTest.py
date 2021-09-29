@@ -38,7 +38,7 @@ class CreateTest(TestCase):
         actualResult = actualResult.keys()
         self.assertEqual(expectedResult, actualResult)
         
-    def test_Create_020_ShouldReturnMyUsername(self):
+    def test_Create_020_Lvl2Grid(self):
         expectedResult = {}
         grid = [
             0,-6,0,0,0,0,0,-5,-9,
