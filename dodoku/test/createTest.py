@@ -26,6 +26,6 @@ class CreateTest(TestCase):
         parms = {'op': 'create', 'level' : '1'}
         actualResult = create._create(parms)
         actualResult = actualResult.keys()
-        self.assertDictEqual(expectedResult, actualResult)
+        self.assertEqual(expectedResult, actualResult)
 
         
