@@ -1,6 +1,6 @@
 def _create(parms):
     result = {'grid': '', 'status': 'create stub', 'integrity': ''}
-    if parms['level'] == 2:
+    if parms['level'] == '2':
         result['grid'] = [
             0,-6,0,0,0,0,0,-5,-9,
             -9,-3,0,-4,-8,0,0,0,0,
@@ -20,4 +20,5 @@ def _create(parms):
             0,0,0,0,-9,-8,0,-6,-1,
             -6,-1,0,0,0,0,0,-7,0
             ]
+       
     return result
