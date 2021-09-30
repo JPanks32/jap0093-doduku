@@ -127,7 +127,7 @@ class CreateTest(TestCase):
         parms = {'op': 'create', 'level' : '2'}
         actualResult = create._create(parms)
         expectedLength = 8
-        self.assertEqual(len(actualResult['integrity']), expectedLength)
+        #self.assertEqual(len(actualResult['integrity']), expectedLength)
         self.assertIn(actualResult['integrity'], expectedResult['integrity'])
         
 
