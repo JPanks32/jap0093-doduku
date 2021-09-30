@@ -26,6 +26,7 @@ def _create(parms):
             -4,0,0,-6,0,-3,-9,0,0,
             0,-6,0,0,-5,0,0,-3,-1
             ]
+        
     elif parms[lvl] == '2':
         result['status'] = 'ok'
         result['grid'] = [
@@ -47,6 +48,7 @@ def _create(parms):
             0,0,0,0,-9,-8,0,-6,-1,
             -6,-1,0,0,0,0,0,-7,0
             ]
+        
     elif parms[lvl] == '3':
         result['status'] = 'ok'
         result['grid'] = [
@@ -55,6 +57,7 @@ def _create(parms):
             -7,0,0,0,0,0,0,0,-5,0,0,0,0,-1,0,-6,-3,0,0,0,-9,-8,0,-5,0,-1,-2,0,-2,0,0,-7,0,-1,0,0,-3,0,-4,-3,0,-8,0,
             -6,-5,0,0,0,-7,-3,0,-5,-9,0,0,0,0,0,-4,0,-2,0,0,0,0,0,0,0,-6,0,0,0,0
             ]
+        
     if result['status'] != 'ok': 
         try:
             x = parms[lvl]
@@ -62,6 +65,7 @@ def _create(parms):
                 result['status'] = "error"
         except:
             result['status'] = "error"
+            
     if result['status'] == 'ok':
         integ = _hash(result['grid'])  
         short_start = random.randint(0, len(integ) - 8)
@@ -83,12 +87,14 @@ def _column_major(grid):
         colCount += 1
         if colCount > 8:
             colCount = 0
+            
     colCount = 0
     for i in range(54,99):
         arr[colCount].append(grid[i])
         colCount += 1
         if colCount > 14:
             colCount = 0
+            
     colCount = 6
     for i in range(99, 153):
         arr[colCount].append(grid[i])
@@ -117,5 +123,4 @@ def _hash(grid):
     myHash.update(col_str.encode())
     myHashDigest = myHash.hexdigest()
     result = myHashDigest.lower()
-    
     return result
