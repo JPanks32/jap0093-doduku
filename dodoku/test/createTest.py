@@ -43,6 +43,8 @@ class CreateTest(TestCase):
     #                                6,-5,0,0,0,-7,-3,0,-5,-9,0,0,0,0,0,-4,0,-2,0,0,0,0,0,0,0,-6,0,0,0,0] AND status = 'ok' AND the
     #                           length of the value of integrity = 8 AND the value of integrity is a substring of
     #                            eb572835ffe2015c731057f94d46fa77430ad6fd332abb0d7dd39d5f2ccadea9
+    #        test 070: returns level 1 if level parameter is blank
+    #        test 080: returns lvl 1 if no level parameter
     
     def test_Create_010_ThreeKeys(self):
         expectedResult = {'grid': '','status': '', 'integrity': ''}
@@ -266,4 +268,27 @@ class CreateTest(TestCase):
         self.assertEqual(expectedResult['grid'], actualResult['grid'])
         self.assertEqual(expectedResult['status'], actualResult['status'])
         self.assertIn(actualResult['integrity'], expectedResult['integrity'])
+        
+    def test_Create_090_Lvl3NotCaseSensitiveTotal(self):
+        expectedResult = {}
+        grid = [
+            0,0,0,0,-6,0,0,0,0,0,0,0,-4,0,-9,0,0,0,0,0,-9,-7,0,-5,-1,0,0,0,-5,-2,0,-7,0,-8,-9,0,-9,0,0,
+            -5,0,-2,0,0,-4,0,-8,-3,0,-4,0,-7,-2,0,0,0,-1,-2,0,-8,0,0,0,0,-3,0,0,0,0,0,0,0,-6,0,-4,0,0,0,-8,0,
+            -7,0,0,0,0,0,0,0,-5,0,0,0,0,-1,0,-6,-3,0,0,0,-9,-8,0,-5,0,-1,-2,0,-2,0,0,-7,0,-1,0,0,-3,0,-4,-3,0,-8,0,
+            -6,-5,0,0,0,-7,-3,0,-5,-9,0,0,0,0,0,-4,0,-2,0,0,0,0,0,0,0,-6,0,0,0,0
+            ]
+        status ='ok'
+        integrity = 'eb572835ffe2015c731057f94d46fa77430ad6fd332abb0d7dd39d5f2ccadea9'
+        expectedResult["grid"] = grid
+        expectedResult["status"] = status
+        expectedResult["integrity"] = integrity
+        parms = {'op': 'create', 'Level' : '3'}
+        actualResult = create._create(parms)
+        expectedLength = 8
+        self.assertEqual(len(actualResult['integrity']), expectedLength)
+        self.assertEqual(expectedResult['grid'], actualResult['grid'])
+        self.assertEqual(expectedResult['status'], actualResult['status'])
+        self.assertIn(actualResult['integrity'], expectedResult['integrity'])
+        
+        
         
