@@ -139,7 +139,7 @@ class CreateTest(TestCase):
         
     def test_Create_050_Lvl1Total(self):
         expectedResult = {}
-        
+        grid, status, integrity = self.GenerateGrid(1)
         expectedResult["grid"] = grid
         expectedResult["status"] = status
         expectedResult["integrity"] = integrity
