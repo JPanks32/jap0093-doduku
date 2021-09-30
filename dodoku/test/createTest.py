@@ -85,7 +85,7 @@ class CreateTest(TestCase):
         
     def test_Create_020_Lvl2Grid(self):
         expectedResult = {}
-        grid, status, integrity = GenerateGrid(2)
+        grid, status, integrity = self.GenerateGrid(2)
         expectedResult["grid"] = grid
         expectedResult["status"] = status
         expectedResult["integrity"] = integrity
