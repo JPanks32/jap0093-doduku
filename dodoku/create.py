@@ -4,7 +4,7 @@ def _create(parms):
     result = {'grid': '', 'status': 'create stub', 'integrity': ''}
     result['status'] = 'ok'
 
-    if parms['level'] == '1':
+    if parms['level'] == '1' or parms['level'] == '' or parms['level'] == None:
         result['grid'] = [
             0,-2,0,0,-1,0,0,-4,0,
             -8,0,-1,-9,0,0,0,0,-5,
