@@ -183,33 +183,14 @@ class CreateTest(TestCase):
         
     def test_Create_070_BlankLvlTotal(self):
         expectedResult = {}
-        grid = [
-            0,-2,0,0,-1,0,0,-4,0,
-            -8,0,-1,-9,0,0,0,0,-5,
-            0,0,0,0,-3,0,0,-1,0,
-            0,-3,0,0,0,0,-4,0,-6,
-            -5,0,-9,0,0,0,0,0,-7,
-            0,0,0,0,0,0,-2,-8,0,
-            -2,0,0,-6,0,0,0,0,0,
-            0,-1,-4,0,-6,0,0,0,-6,
-            0,0,-3,0,0,0,-2,0,0,
-            -1,0,-9,0,-4,0,-5,-7,0,
-            0,0,0,0,0,-7,0,0,-5,
-            0,0,-6,0,0,0,0,-9,0,
-            -2,0,0,0,0,0,-4,0,-8,
-            -7,0,-9,0,0,0,0,0,0,
-            0,-5,0,0,-9,0,0,0,0,
-            -4,0,0,-6,0,-3,-9,0,0,
-            0,-6,0,0,-5,0,0,-3,-1
-            ]
-        status ='ok'
-        integrity = '5a3f0c31993d46bcb2ab5f3e8318e734231ee8bdb26cba545fadd7b1732888cd'
+        grid, status, integrity = self.GenerateGrid(1)
         expectedResult["grid"] = grid
         expectedResult["status"] = status
         expectedResult["integrity"] = integrity
         parms = {'op': 'create', 'level' : ''}
         actualResult = create._create(parms)
         expectedLength = 8
+        
         self.assertEqual(len(actualResult['integrity']), expectedLength)
         self.assertEqual(expectedResult['grid'], actualResult['grid'])
         self.assertEqual(expectedResult['status'], actualResult['status'])
@@ -217,33 +198,14 @@ class CreateTest(TestCase):
         
     def test_Create_080_MissingLvlTotal(self):
         expectedResult = {}
-        grid = [
-            0,-2,0,0,-1,0,0,-4,0,
-            -8,0,-1,-9,0,0,0,0,-5,
-            0,0,0,0,-3,0,0,-1,0,
-            0,-3,0,0,0,0,-4,0,-6,
-            -5,0,-9,0,0,0,0,0,-7,
-            0,0,0,0,0,0,-2,-8,0,
-            -2,0,0,-6,0,0,0,0,0,
-            0,-1,-4,0,-6,0,0,0,-6,
-            0,0,-3,0,0,0,-2,0,0,
-            -1,0,-9,0,-4,0,-5,-7,0,
-            0,0,0,0,0,-7,0,0,-5,
-            0,0,-6,0,0,0,0,-9,0,
-            -2,0,0,0,0,0,-4,0,-8,
-            -7,0,-9,0,0,0,0,0,0,
-            0,-5,0,0,-9,0,0,0,0,
-            -4,0,0,-6,0,-3,-9,0,0,
-            0,-6,0,0,-5,0,0,-3,-1
-            ]
-        status ='ok'
-        integrity = '5a3f0c31993d46bcb2ab5f3e8318e734231ee8bdb26cba545fadd7b1732888cd'
+        grid, status, integrity = self.GenerateGrid(1)
         expectedResult["grid"] = grid
         expectedResult["status"] = status
         expectedResult["integrity"] = integrity
         parms = {'op': 'create'}
         actualResult = create._create(parms)
         expectedLength = 8
+        
         self.assertEqual(len(actualResult['integrity']), expectedLength)
         self.assertEqual(expectedResult['grid'], actualResult['grid'])
         self.assertEqual(expectedResult['status'], actualResult['status'])
@@ -251,33 +213,14 @@ class CreateTest(TestCase):
         
     def test_Create_090_LvlNotCaseSensitiveTotal(self):
         expectedResult = {}
-        grid = [
-            0,-2,0,0,-1,0,0,-4,0,
-            -8,0,-1,-9,0,0,0,0,-5,
-            0,0,0,0,-3,0,0,-1,0,
-            0,-3,0,0,0,0,-4,0,-6,
-            -5,0,-9,0,0,0,0,0,-7,
-            0,0,0,0,0,0,-2,-8,0,
-            -2,0,0,-6,0,0,0,0,0,
-            0,-1,-4,0,-6,0,0,0,-6,
-            0,0,-3,0,0,0,-2,0,0,
-            -1,0,-9,0,-4,0,-5,-7,0,
-            0,0,0,0,0,-7,0,0,-5,
-            0,0,-6,0,0,0,0,-9,0,
-            -2,0,0,0,0,0,-4,0,-8,
-            -7,0,-9,0,0,0,0,0,0,
-            0,-5,0,0,-9,0,0,0,0,
-            -4,0,0,-6,0,-3,-9,0,0,
-            0,-6,0,0,-5,0,0,-3,-1
-            ]
-        status ='ok'
-        integrity = '5a3f0c31993d46bcb2ab5f3e8318e734231ee8bdb26cba545fadd7b1732888cd'
+        grid, status, integrity = self.GenerateGrid(1)
         expectedResult["grid"] = grid
         expectedResult["status"] = status
         expectedResult["integrity"] = integrity
         parms = {'op': 'create', 'Level' : '3'}
         actualResult = create._create(parms)
         expectedLength = 8
+        
         self.assertEqual(len(actualResult['integrity']), expectedLength)
         self.assertEqual(expectedResult['grid'], actualResult['grid'])
         self.assertEqual(expectedResult['status'], actualResult['status'])
@@ -285,33 +228,14 @@ class CreateTest(TestCase):
         
     def test_Create_100_IgnoreExtraneous(self):
         expectedResult = {}
-        grid = [
-            0,-2,0,0,-1,0,0,-4,0,
-            -8,0,-1,-9,0,0,0,0,-5,
-            0,0,0,0,-3,0,0,-1,0,
-            0,-3,0,0,0,0,-4,0,-6,
-            -5,0,-9,0,0,0,0,0,-7,
-            0,0,0,0,0,0,-2,-8,0,
-            -2,0,0,-6,0,0,0,0,0,
-            0,-1,-4,0,-6,0,0,0,-6,
-            0,0,-3,0,0,0,-2,0,0,
-            -1,0,-9,0,-4,0,-5,-7,0,
-            0,0,0,0,0,-7,0,0,-5,
-            0,0,-6,0,0,0,0,-9,0,
-            -2,0,0,0,0,0,-4,0,-8,
-            -7,0,-9,0,0,0,0,0,0,
-            0,-5,0,0,-9,0,0,0,0,
-            -4,0,0,-6,0,-3,-9,0,0,
-            0,-6,0,0,-5,0,0,-3,-1
-            ]
-        status ='ok'
-        integrity = '5a3f0c31993d46bcb2ab5f3e8318e734231ee8bdb26cba545fadd7b1732888cd'
+        grid, status, integrity = self.GenerateGrid(1)
         expectedResult["grid"] = grid
         expectedResult["status"] = status
         expectedResult["integrity"] = integrity
         parms = {'op': 'create', 'Level' : '3'}
         actualResult = create._create(parms)
         expectedLength = 8
+        
         self.assertEqual(len(actualResult['integrity']), expectedLength)
         self.assertEqual(expectedResult['grid'], actualResult['grid'])
         self.assertEqual(expectedResult['status'], actualResult['status'])
@@ -320,27 +244,7 @@ class CreateTest(TestCase):
         
     def test_Create_110_Lvl1SubstringProb(self):
         expectedResult = {}
-        grid = [
-            0,-2,0,0,-1,0,0,-4,0,
-            -8,0,-1,-9,0,0,0,0,-5,
-            0,0,0,0,-3,0,0,-1,0,
-            0,-3,0,0,0,0,-4,0,-6,
-            -5,0,-9,0,0,0,0,0,-7,
-            0,0,0,0,0,0,-2,-8,0,
-            -2,0,0,-6,0,0,0,0,0,
-            0,-1,-4,0,-6,0,0,0,-6,
-            0,0,-3,0,0,0,-2,0,0,
-            -1,0,-9,0,-4,0,-5,-7,0,
-            0,0,0,0,0,-7,0,0,-5,
-            0,0,-6,0,0,0,0,-9,0,
-            -2,0,0,0,0,0,-4,0,-8,
-            -7,0,-9,0,0,0,0,0,0,
-            0,-5,0,0,-9,0,0,0,0,
-            -4,0,0,-6,0,-3,-9,0,0,
-            0,-6,0,0,-5,0,0,-3,-1
-            ]
-        status ='ok'
-        integrity = '5a3f0c31993d46bcb2ab5f3e8318e734231ee8bdb26cba545fadd7b1732888cd'
+        grid, status, integrity = self.GenerateGrid(1)
         expectedResult["grid"] = grid
         expectedResult["status"] = status
         expectedResult["integrity"] = integrity
