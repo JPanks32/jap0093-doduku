@@ -25,10 +25,11 @@ def _create(parms):
             -6,-1,0,0,0,0,0,-7,0
             ]
     integ = _hash(result['grid'])  
-    short_start = random.randint(0, 145)
+    print(integ)
+    short_start = random.randint(0, len(integ) - 8)
     short_integ = ''
     for short_fill in range(short_start, short_start + 8):
-        short_integ += str(short_fill)
+        short_integ += integ[short_fill]
     result['integrity'] = short_integ
     return result
 
