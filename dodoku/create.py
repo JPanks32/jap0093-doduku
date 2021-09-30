@@ -71,6 +71,9 @@ def _create(parms):
             result['integrity'] = short_integ
     return result
 
+#It divides up the board into sections with equal-length rows, then iterates through them, filling in a different
+    #array for each column.
+#It then combines all the arrays into one array for the numbers
 def _column_major(grid):
     arr = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
     result = []
@@ -98,14 +101,15 @@ def _column_major(grid):
             result.append(num)
     return result
 
-
+#It concatinates all of the strings in the array into one string
 def _concat_columns(cols):
     result = ""
     for num in cols:
         result += str(num)
     return result
         
-        
+#it hash sha256 the grid provided by passing it through two other methods to turn it into
+    #a column-major string, then casts the hash function on it        
 def _hash(grid):
     col_maj = _column_major(grid)
     col_str =_concat_columns(col_maj)
