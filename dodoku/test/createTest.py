@@ -272,7 +272,13 @@ class CreateTest(TestCase):
                 
            
     #  Sad path tests 
-    #        test 910: non-integer string:  'a'
+    #        test 910: non-numeric string:  'a'
+    #            result: error message
+    #        test 920: non-integer string:  '1.1'
+    #            result: error message
+    #        test 930: lower bound of string:  '0'
+    #            result: error message
+    #        test 940: upper bound of string:  '4'
     #            result: error message
     #        
     #            
