@@ -61,6 +61,16 @@ class CreateTest(TestCase):
             ]
             status ='ok'
             integrity = '6fcd71ef7722e7573d2f607a35cfa48f72b03c4cea135ac31f7ef73a58e50a8a'
+            
+        if level == 3:
+             grid = [
+                 0,0,0,0,-6,0,0,0,0,0,0,0,-4,0,-9,0,0,0,0,0,-9,-7,0,-5,-1,0,0,0,-5,-2,0,-7,0,-8,-9,0,-9,0,0,
+                 -5,0,-2,0,0,-4,0,-8,-3,0,-4,0,-7,-2,0,0,0,-1,-2,0,-8,0,0,0,0,-3,0,0,0,0,0,0,0,-6,0,-4,0,0,0,-8,0,
+                 -7,0,0,0,0,0,0,0,-5,0,0,0,0,-1,0,-6,-3,0,0,0,-9,-8,0,-5,0,-1,-2,0,-2,0,0,-7,0,-1,0,0,-3,0,-4,-3,0,-8,0,
+                 -6,-5,0,0,0,-7,-3,0,-5,-9,0,0,0,0,0,-4,0,-2,0,0,0,0,0,0,0,-6,0,0,0,0
+                 ]
+             status ='ok'
+             integrity = 'eb572835ffe2015c731057f94d46fa77430ad6fd332abb0d7dd39d5f2ccadea9'
         return grid, status, integrity
     #  Happy path tests
     #        test 010: returns dictionary with keys
@@ -103,6 +113,7 @@ class CreateTest(TestCase):
         parms = {'op': 'create', 'level' : '1'}
         actualResult = create._create(parms)
         actualResult = actualResult.keys()
+        
         self.assertEqual(expectedResult, actualResult)
         
     def test_Create_020_Lvl2Grid(self):
@@ -113,6 +124,7 @@ class CreateTest(TestCase):
         expectedResult["integrity"] = integrity
         parms = {'op': 'create', 'level' : '2'}
         actualResult = create._create(parms)
+        
         self.assertEqual(expectedResult['grid'], actualResult['grid'])
         
     def test_Create_030_Lvl2status(self):
@@ -123,6 +135,7 @@ class CreateTest(TestCase):
         expectedResult["integrity"] = integrity
         parms = {'op': 'create', 'level' : '2'}
         actualResult = create._create(parms)
+        
         self.assertEqual(expectedResult['status'], actualResult['status'])
         
     def test_Create_040_Lvl2Integrity(self):
@@ -134,6 +147,7 @@ class CreateTest(TestCase):
         parms = {'op': 'create', 'level' : '2'}
         actualResult = create._create(parms)
         expectedLength = 8
+        
         self.assertEqual(len(actualResult['integrity']), expectedLength)
         self.assertIn(actualResult['integrity'], expectedResult['integrity'])
         
@@ -146,6 +160,7 @@ class CreateTest(TestCase):
         parms = {'op': 'create', 'level' : '1'}
         actualResult = create._create(parms)
         expectedLength = 8
+        
         self.assertEqual(len(actualResult['integrity']), expectedLength)
         self.assertEqual(expectedResult['grid'], actualResult['grid'])
         self.assertEqual(expectedResult['status'], actualResult['status'])
@@ -153,20 +168,14 @@ class CreateTest(TestCase):
         
     def test_Create_060_Lvl3Total(self):
         expectedResult = {}
-        grid = [
-            0,0,0,0,-6,0,0,0,0,0,0,0,-4,0,-9,0,0,0,0,0,-9,-7,0,-5,-1,0,0,0,-5,-2,0,-7,0,-8,-9,0,-9,0,0,
-            -5,0,-2,0,0,-4,0,-8,-3,0,-4,0,-7,-2,0,0,0,-1,-2,0,-8,0,0,0,0,-3,0,0,0,0,0,0,0,-6,0,-4,0,0,0,-8,0,
-            -7,0,0,0,0,0,0,0,-5,0,0,0,0,-1,0,-6,-3,0,0,0,-9,-8,0,-5,0,-1,-2,0,-2,0,0,-7,0,-1,0,0,-3,0,-4,-3,0,-8,0,
-            -6,-5,0,0,0,-7,-3,0,-5,-9,0,0,0,0,0,-4,0,-2,0,0,0,0,0,0,0,-6,0,0,0,0
-            ]
-        status ='ok'
-        integrity = 'eb572835ffe2015c731057f94d46fa77430ad6fd332abb0d7dd39d5f2ccadea9'
+        grid, status, integrity = self.GenerateGrid(3)
         expectedResult["grid"] = grid
         expectedResult["status"] = status
         expectedResult["integrity"] = integrity
         parms = {'op': 'create', 'level' : '3'}
         actualResult = create._create(parms)
         expectedLength = 8
+        
         self.assertEqual(len(actualResult['integrity']), expectedLength)
         self.assertEqual(expectedResult['grid'], actualResult['grid'])
         self.assertEqual(expectedResult['status'], actualResult['status'])
