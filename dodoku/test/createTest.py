@@ -131,5 +131,39 @@ class CreateTest(TestCase):
         print(actualResult['integrity'])
         self.assertIn(actualResult['integrity'], expectedResult['integrity'])
         
-
+        def test_Create_050_Lvl1Total(self):
+        expectedResult = {}
+        grid = [
+            0,-2,0,0,-1,0,0,-4,0,
+            -8,0,-1,-9,0,0,0,0,-5,
+            0,0,0,0,-3,0,0,-1,0,
+            0,-3,0,0,0,0,-4,0,-6,
+            -5,0,-9,0,0,0,0,0,-7,
+            0,0,0,0,0,0,-2,-8,0,
+            -2,0,0,-6,0,0,0,0,0,
+            0,-1,-4,0,-6,0,0,0,-6,
+            0,0,-3,0,0,0,-2,0,0,
+            -1,0,-9,0,-4,0,-5,-7,0,
+            0,0,0,0,0,-7,0,0,-5,
+            0,0,-6,0,0,0,0,-9,0,
+            -2,0,0,0,0,0,-4,0,-8,
+            -7,0,-9,0,0,0,0,0,0,
+            0,-5,0,0,-9,0,0,0,0,
+            -4,0,0,-6,0,-3,-9,0,0,
+            0,-6,0,0,-5,0,0,-3,-1
+            ]
+        status ='ok'
+        integrity = '5a3f0c31993d46bcb2ab5f3e8318e734231ee8bdb26cba545fadd7b1732888cd'
+        expectedResult["grid"] = grid
+        expectedResult["status"] = status
+        expectedResult["integrity"] = integrity
+        parms = {'op': 'create', 'level' : '1'}
+        actualResult = create._create(parms)
+        expectedLength = 8
+        self.assertEqual(len(actualResult['integrity']), expectedLength)
+        print(actualResult['integrity'])
+        self.assertEqual(expectedResult['grid'], actualResult['grid'])
+        self.assertEqual(expectedResult['status'], actualResult['status'])
+        self.assertIn(actualResult['integrity'], expectedResult['integrity'])
+        
         
