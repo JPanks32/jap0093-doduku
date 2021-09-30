@@ -23,12 +23,26 @@ class CreateTest(TestCase):
     #                                6,0,-9,0,0,-8,-1,-2,0,0,0,0,0,0,0,0,0,-7,0,0,0,0,0,0,0,0,-5,0,-8,0,-4,0,0,-1,0,0,0,-7,0,0,-6,0,-2,0,-
     #                                9,0,0,0,0,0,0,0,0,-5,0,0,0,0,0,0,0,0,0,-9,-5,-3,0,0,-7,0,-4,0,0,0,0,0,-5,-8,0,0,-1,0,0,-9,0,0,0,-2,-
     #                                1,0,0,0,0,0,0,0,0,0,-9,-8,0,-6,-1,-6,-1,0,0,0,0,0,-7,0] 
-    
-    #AND status = 'ok' AND the length of the
-    #                    value of integrity = 8 AND the value of integrity is a substring of
+    #        test 030: returns level 2
+    #            result: status = ok 
+    #        test 040: returns level 2
+    #            result: value of integrity = 8 AND the value of integrity is a substring of
     #                        6fcd71ef7722e7573d2f607a35cfa48f72b03c4cea135ac31f7ef73a58e50a8a
-    #        
-    
+    #        test 050: returns level 1
+    #            result:grid = [0,-2,0,0,-1,0,0,-4,0,-8,0,-1,-9,0,0,0,0,-5,0,0,0,0,-3,0,0,-1,0,0,-3,0,0,0,0,-4,0,-6,-5,0,-9,0,0,0,0,
+    #                                0,-7,0,0,0,0,0,0,-2,-8,0,-2,0,0,-6,0,0,0,0,0,0,-1,-4,0,-6,0,0,0,-6,0,0,-3,0,0,0,-2,0,0,-1,0,-9,
+    #                                0,-4,0,-5,-7,0,0,0,0,0,0,-7,0,0,-5,0,0,-6,0,0,0,0,-9,0,-2,0,0,0,0,0,-4,0,-8,-7,0,-9,0,0,0,0,0,0,0,
+    #                                -5,0,0,-9,0,0,0,0,-4,0,0,-6,0,-3,-9,0,0,0,-6,0,0,-5,0,0,-3,-1] 
+    #                AND status = 'ok' AND the length of
+    #                the value of integrity = 8 AND the value of integrity is a substring of
+    #                    5a3f0c31993d46bcb2ab5f3e8318e734231ee8bdb26cba545fadd7b1732888cd
+    #         test 060: returns level 3
+    #            result:grid = [0,0,0,0,-6,0,0,0,0,0,0,0,-4,0,-9,0,0,0,0,0,-9,-7,0,-5,-1,0,0,0,-5,-2,0,-7,0,-8,-9,0,-9,0,0,-
+    #                                5,0,-2,0,0,-4,0,-8,-3,0,-4,0,-7,-2,0,0,0,-1,-2,0,-8,0,0,0,0,-3,0,0,0,0,0,0,0,-6,0,-4,0,0,0,-8,0,-
+    #                                7,0,0,0,0,0,0,0,-5,0,0,0,0,-1,0,-6,-3,0,0,0,-9,-8,0,-5,0,-1,-2,0,-2,0,0,-7,0,-1,0,0,-3,0,-4,-3,0,-8,0,-
+    #                                6,-5,0,0,0,-7,-3,0,-5,-9,0,0,0,0,0,-4,0,-2,0,0,0,0,0,0,0,-6,0,0,0,0] AND status = 'ok' AND the
+    #                           length of the value of integrity = 8 AND the value of integrity is a substring of
+    #                            eb572835ffe2015c731057f94d46fa77430ad6fd332abb0d7dd39d5f2ccadea9
     
     def test_Create_010_ThreeKeys(self):
         expectedResult = {'grid': '','status': '', 'integrity': ''}
@@ -128,7 +142,6 @@ class CreateTest(TestCase):
         actualResult = create._create(parms)
         expectedLength = 8
         self.assertEqual(len(actualResult['integrity']), expectedLength)
-        print(actualResult['integrity'])
         self.assertIn(actualResult['integrity'], expectedResult['integrity'])
         
     def test_Create_050_Lvl1Total(self):
@@ -161,9 +174,28 @@ class CreateTest(TestCase):
         actualResult = create._create(parms)
         expectedLength = 8
         self.assertEqual(len(actualResult['integrity']), expectedLength)
-        print(actualResult['integrity'])
         self.assertEqual(expectedResult['grid'], actualResult['grid'])
         self.assertEqual(expectedResult['status'], actualResult['status'])
         self.assertIn(actualResult['integrity'], expectedResult['integrity'])
         
+    def test_Create_060_Lvl3Total(self):
+        expectedResult = {}
+        grid = [
+            0,0,0,0,-6,0,0,0,0,0,0,0,-4,0,-9,0,0,0,0,0,-9,-7,0,-5,-1,0,0,0,-5,-2,0,-7,0,-8,-9,0,-9,0,0,
+            -5,0,-2,0,0,-4,0,-8,-3,0,-4,0,-7,-2,0,0,0,-1,-2,0,-8,0,0,0,0,-3,0,0,0,0,0,0,0,-6,0,-4,0,0,0,-8,0,
+            -7,0,0,0,0,0,0,0,-5,0,0,0,0,-1,0,-6,-3,0,0,0,-9,-8,0,-5,0,-1,-2,0,-2,0,0,-7,0,-1,0,0,-3,0,-4,-3,0,-8,0,
+            -6,-5,0,0,0,-7,-3,0,-5,-9,0,0,0,0,0,-4,0,-2,0,0,0,0,0,0,0,-6,0,0,0,0
+            ]
+        status ='ok'
+        integrity = 'eb572835ffe2015c731057f94d46fa77430ad6fd332abb0d7dd39d5f2ccadea9'
+        expectedResult["grid"] = grid
+        expectedResult["status"] = status
+        expectedResult["integrity"] = integrity
+        parms = {'op': 'create', 'level' : '3'}
+        actualResult = create._create(parms)
+        expectedLength = 8
+        self.assertEqual(len(actualResult['integrity']), expectedLength)
+        self.assertEqual(expectedResult['grid'], actualResult['grid'])
+        self.assertEqual(expectedResult['status'], actualResult['status'])
+        self.assertIn(actualResult['integrity'], expectedResult['integrity'])
         
