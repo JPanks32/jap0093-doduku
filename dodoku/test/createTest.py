@@ -259,7 +259,7 @@ class CreateTest(TestCase):
         expectedResult["grid"] = grid
         expectedResult["status"] = status
         expectedResult["integrity"] = integrity
-        parms = {'op': 'create', 'level' : ''}
+        parms = {'op': 'create'}
         actualResult = create._create(parms)
         expectedLength = 8
         self.assertEqual(len(actualResult['integrity']), expectedLength)
