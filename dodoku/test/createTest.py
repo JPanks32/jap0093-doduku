@@ -131,7 +131,7 @@ class CreateTest(TestCase):
         print(actualResult['integrity'])
         self.assertIn(actualResult['integrity'], expectedResult['integrity'])
         
-        def test_Create_050_Lvl1Total(self):
+    def test_Create_050_Lvl1Total(self):
         expectedResult = {}
         grid = [
             0,-2,0,0,-1,0,0,-4,0,
