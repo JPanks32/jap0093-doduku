@@ -3,7 +3,11 @@ import random
 def _create(parms):
     result = {'grid': '', 'status': 'create stub', 'integrity': ''}
     result['status'] = 'ok'
-    if (len(list(parms)) == 1 and list(parms)[0] == 'op') or parms['level'] == '1' or parms['Level'] == '1' or parms['level'] == '' or parms['Level'] == '' or parms['level'] == None or parms['Level'] == None:
+    lvl = 'level'
+    if len(list(parms)) > 1:
+        if list(parms)[1] == 'Level':
+            lvl = 'Level'
+    if (len(list(parms)) == 1 and list(parms)[0] == 'op') or parms[lvl] == '1' or parms[lvl] == '' or parms[lvl] == None:
         result['grid'] = [
             0,-2,0,0,-1,0,0,-4,0,
             -8,0,-1,-9,0,0,0,0,-5,
@@ -23,7 +27,7 @@ def _create(parms):
             -4,0,0,-6,0,-3,-9,0,0,
             0,-6,0,0,-5,0,0,-3,-1
             ]
-    elif parms['level'] == '2' or parms['Level'] == '2':
+    elif parms[lvl] == '2':
         result['grid'] = [
             0,-6,0,0,0,0,0,-5,-9,
             -9,-3,0,-4,-8,0,0,0,0,
@@ -43,7 +47,7 @@ def _create(parms):
             0,0,0,0,-9,-8,0,-6,-1,
             -6,-1,0,0,0,0,0,-7,0
             ]
-    elif parms['level'] == '3' or parms['Level'] == '3':
+    elif parms[lvl] == '3':
         result['grid'] = [
             0,0,0,0,-6,0,0,0,0,0,0,0,-4,0,-9,0,0,0,0,0,-9,-7,0,-5,-1,0,0,0,-5,-2,0,-7,0,-8,-9,0,-9,0,0,
             -5,0,-2,0,0,-4,0,-8,-3,0,-4,0,-7,-2,0,0,0,-1,-2,0,-8,0,0,0,0,-3,0,0,0,0,0,0,0,-6,0,-4,0,0,0,-8,0,
