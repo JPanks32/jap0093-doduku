@@ -16,7 +16,7 @@ class CreateTest(TestCase):
     #         abnormal: error
     #         side effects:  none
     
-    def GenerateGrid(level):
+    def GenerateGrid(self, level):
         if level == 2:
             grid = [
                 0,-6,0,0,0,0,0,-5,-9,
