@@ -37,23 +37,24 @@ def _column_major(grid):
     arr = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
     result = []
     colCount = 0
-    for i in range(0, 53):
+    for i in range(0, 54):
         arr[colCount].append(grid[i])
         colCount += 1
         if colCount > 8:
             colCount = 0
     colCount = 0
-    for i in range(54,98):
+    for i in range(54,99):
         arr[colCount].append(grid[i])
         colCount += 1
         if colCount > 14:
             colCount = 0
     colCount = 6
-    for i in range(99, 152):
+    for i in range(99, 153):
         arr[colCount].append(grid[i])
         colCount += 1
         if colCount > 14:
             colCount = 6
+    print(arr)
     for col in arr:
         for num in col:
             result.append(num)
