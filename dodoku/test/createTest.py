@@ -402,7 +402,7 @@ class CreateTest(TestCase):
     def test100_910NonIntegerLevel(self):
         parms = {'op': 'create', 'level' : 'a'}
         actualResult = create._create(parms)
-        expectedResult = 'error: non-integer level'
+        expectedResult = 'error'
         self.assertEqual(expectedResult, actualResult['status'])
         
         
