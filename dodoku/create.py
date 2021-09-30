@@ -5,7 +5,7 @@ def _create(parms):
     result['status'] = 'ok'
     lvl = 'level'
     if len(list(parms)) > 1:
-        if list(parms)[1] != 'Level':
+        if list(parms)[1] != 'level':
             lvl = ''
     if (len(list(parms)) == 1 and list(parms)[0] == 'op') or parms[lvl] == '1' or parms[lvl] == '':
         result['grid'] = [
