@@ -411,4 +411,10 @@ class CreateTest(TestCase):
         expectedResult = 'error'
         self.assertEqual(expectedResult, actualResult['status'])
         
+    def test100_930LowerBound(self):
+        parms = {'op': 'create', 'level' : '0'}
+        actualResult = create._create(parms)
+        expectedResult = 'error'
+        self.assertEqual(expectedResult, actualResult['status'])
+        
         
