@@ -5,9 +5,9 @@ def _create(parms):
     result['status'] = 'ok'
     lvl = 'level'
     if len(list(parms)) > 1:
-        if list(parms)[1] != 'level':
-            lvl = ''
-    if (len(list(parms)) == 1 and list(parms)[0] == 'op') or parms[lvl] == '1' or parms[lvl] == '':
+        print(list(parms)[1])
+    
+    if (len(list(parms)) == 1 and list(parms)[0] == 'op') or list(parms)[1] != 'level' or parms[lvl] == '1' or parms[lvl] == '' or parms[lvl] == None:
         result['grid'] = [
             0,-2,0,0,-1,0,0,-4,0,
             -8,0,-1,-9,0,0,0,0,-5,
