@@ -388,5 +388,21 @@ class CreateTest(TestCase):
         stat_prob = 30
         self.assertTrue(len(substrs[0]) > stat_prob)
                 
+                
+                
+           
+    #  Sad path tests 
+    #        test 910: non-integer string:  'a'
+    #            result: error message
+    #        
+    #            
+
+
+
+    def test100_910NonIntegerLevel(self):
+        parms = {'op': 'create', 'level' : 'a'}
+        actualResult = create._create(parms)
+        expectedResult = 'error: non-integer level'
+        self.assertEqual(expectedResult, actualResult['status'])
         
         
