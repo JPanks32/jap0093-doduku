@@ -82,5 +82,4 @@ def _find_integrity(grid):
     myHash.update(col_str.encode())
     myHashDigest = myHash.hexdigest()
     result = myHashDigest.lower() 
-    result = ''
     return result
