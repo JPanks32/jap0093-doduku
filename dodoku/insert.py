@@ -1,3 +1,6 @@
+import hashlib
+import random
+
 def _insert(parms):
     result = {'status': 'insert stub'}
     return result
@@ -34,3 +37,50 @@ def _check_input(parms):
         result = False
     return result
 
+def _column_major(grid):
+    arr = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
+    result = []
+    colCount = 0
+    for i in range(0, 54):
+        arr[colCount].append(grid[i])
+        colCount += 1
+        if colCount > 8:
+            colCount = 0
+            
+    colCount = 0
+    for i in range(54,99):
+        arr[colCount].append(grid[i])
+        colCount += 1
+        if colCount > 14:
+            colCount = 0
+            
+    colCount = 6
+    for i in range(99, 153):
+        arr[colCount].append(grid[i])
+        colCount += 1
+        if colCount > 14:
+            colCount = 6
+
+    for col in arr:
+        for num in col:
+            result.append(num)
+    return result
+
+#It concatinates all of the strings in the array into one string
+def _concat_columns(cols):
+    result = ""
+    for num in cols:
+        result += str(num)
+    return result
+        
+#it hash sha256 the grid provided by passing it through two other methods to turn it into
+    #a column-major string, then casts the hash function on it        
+def _find_integrity(grid):
+    col_maj = _column_major(grid)
+    col_str =_concat_columns(col_maj)
+    myHash = hashlib.sha256()
+    myHash.update(col_str.encode())
+    myHashDigest = myHash.hexdigest()
+    result = myHashDigest.lower() 
+    result = ''
+    return result

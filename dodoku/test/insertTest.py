@@ -15,9 +15,7 @@ class InsertTest(TestCase):
     #        test 010: check_integrity returns true
     #            result: true
     #   
-    
-    def test_CheckInput(self):
-        expectedResult = True
+    def getGrid(self):
         grid = [0,-2,0,0,-1,0,0,-4,0,
                 -8,0,-1,-9,0,0,0,0,-5,
                 0,0,0,0,-3,0,0,-1,0,
@@ -35,6 +33,17 @@ class InsertTest(TestCase):
                 0,-5,0,0,-9,0,0,0,0,
                 -4,0,0,-6,0,-3,-9,0,0,
                 0,-6,0,0,-5,0,0,-3,-1]
+        return grid
+    def test_CheckInput(self):
+        expectedResult = True
+        grid = self.getGrid()
         parms = {'value': '3', 'cell' : 'r7c9', 'grid': grid , 'integrity' : '93d46bcb'}
         actualResult = insert._check_input(parms)
         self.assertEqual(expectedResult, actualResult)
+        
+        
+        
+    def test_find_integrity(self):
+        grid = self.getGrid()
+        actualResult = insert._find_integrity(grid)
+        self.assertIn(integrity='93d46bcb', actualResult)
