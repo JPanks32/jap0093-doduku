@@ -16,7 +16,7 @@ class InsertTest(TestCase):
     #            result: true
     #   
     
-    def test_Create_010_ThreeKeys(self):
+    def test_CheckInput(self):
         expectedResult = True
         grid = [0,-2,0,0,-1,0,0,-4,0,
                 -8,0,-1,-9,0,0,0,0,-5,

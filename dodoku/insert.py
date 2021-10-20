@@ -14,15 +14,10 @@ def _check_input(parms):
     except:
         result = False
     try:
-        if int(parms['value']) < 1 or int(parms['value']) > 9:
+        if int(parms['value']) < 1 or int(parms['value']) > 9 or type(parms['value']) is not str:
             result = False
     except:
-        try:
-            x = parms['value']
-            if type(x) is not int:
-                result = False
-        except:
-            continue
+        pass
     try:
         if len(parms['grid']) != 153:
             result = False
