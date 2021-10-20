@@ -10,12 +10,7 @@ class InsertTest(TestCase):
     #         normal:  dictionary with "grid", "integrity", and "status"
     #         abnormal: error
     #         side effects:  none
-    
-    #  Happy path tests
-    #        test 010: check_integrity returns true
-    #            result: true
-    #   
-    def test_Insert_010_getGrid(self):
+    def getGrid(self):
         grid = [0,-2,0,0,-1,0,0,-4,0,
                 -8,0,-1,-9,0,0,0,0,-5,
                 0,0,0,0,-3,0,0,-1,0,
@@ -34,7 +29,12 @@ class InsertTest(TestCase):
                 -4,0,0,-6,0,-3,-9,0,0,
                 0,-6,0,0,-5,0,0,-3,-1]
         return grid
-    def test_Insert_020_CheckInput(self):
+    #  Happy path tests
+    #        test 010: check_integrity returns true
+    #            result: true
+    #   
+    
+    def test_Insert_010_CheckInput(self):
         expectedResult = True
         grid = self.getGrid()
         parms = {'value': '3', 'cell' : 'r7c9', 'grid': grid , 'integrity' : '93d46bcb'}
@@ -43,12 +43,12 @@ class InsertTest(TestCase):
         
         
         
-    def test_Insert_030_find_integrity(self):
+    def test_Insert_020_find_integrity(self):
         grid = self.getGrid()
         actualResult = insert._find_integrity(grid)
         self.assertIn('93d46bcb', actualResult)
         
-    def test_Insert_040_find_location(self):
+    def test_Insert_030_find_location(self):
         loc = 'r11c7'
         actualResult = insert._find_location(loc)
         self.assertEqual([11,7], actualResult)
