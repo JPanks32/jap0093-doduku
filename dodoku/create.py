@@ -62,9 +62,9 @@ def _create(parms):
         try:
             x = parms[lvl]
             if(x != '1' and x != '2' and x != '3'):
-                result['status'] = "error"
+                result['status'] = "error: "
         except:
-            result['status'] = "error"
+            result['status'] = "error: "
             
     if result['status'] == 'ok':
         integ = _hash(result['grid'])  
