@@ -46,4 +46,5 @@ class InsertTest(TestCase):
     def test_find_integrity(self):
         grid = self.getGrid()
         actualResult = insert._find_integrity(grid)
-        self.assertIn(integrity='93d46bcb', actualResult)
+        print(actualResult)
+        self.assertIn('93d46bcb', actualResult)
