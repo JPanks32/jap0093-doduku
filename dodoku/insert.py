@@ -6,9 +6,8 @@ def _insert(parms):
     return result
 
 def _find_location(loc):
-    r = 1
-    c = 1
-    return r, c
+    cell = [1,1]
+    return cell
 
 def _check_input(parms):
     result = True
