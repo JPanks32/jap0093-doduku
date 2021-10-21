@@ -308,9 +308,9 @@ class InsertTest(TestCase):
     
     def test100_940_target_hint(self):
         grid = '[0,-2,0,0,-1,0,0,-4,0,-8,0,-1,-9,0,0,0,0,-5,0,0,0,0,-3,0,0,-1,0,0,-3,0,0,0,0,-4,0,-6,-5,0,-9,0,0,0,0,0,-7,0,0,0,0,0,0,-2,-8,0,-2,0,0,-6,0,0,0,0,0,0,-1,-4,0,-6,0,0,0,-6,0,0,-3,0,0,0,-2,0,0,-1,0,-9,0,-4,0,-5,-7,0,0,0,0,0,0,-7,0,0,-5,0,0,-6,0,0,0,0,-9,0,-2,0,0,0,0,0,-4,0,-8,-7,0,-9,0,0,0,0,0,0,0,-5,0,0,-9,0,0,0,0,-4,0,0,-6,0,-3,-9,0,0,0,-6,0,0,-5,0,0,-3,-1]'
-        parms={'value':'a', 'cell':'r1c2', 'grid': grid, 'integrity':'12345678'}
+        parms={'value':'1', 'cell':'r1c2', 'grid': grid, 'integrity':'12345678'}
         actualResult = insert._insert(parms)
-        expectedResult = {'status':'error: attempt to change hint'}
+        expectedResult = {'status':'error: attempt to change fixed hint'}
         self.assertEqual(expectedResult, actualResult) 
 
 

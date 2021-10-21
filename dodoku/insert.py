@@ -120,7 +120,6 @@ def _find_index(loc):
 #-1 for invalid cell reference
 #-2 for missing cell ref
 #-3 for invalid value
-#-4 for trying to change hint
 def _check_input(parms):
     result = 1
     try:
