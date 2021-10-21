@@ -17,6 +17,8 @@ def _insert(parms):
             result_err['status'] = 'error: invalid cell reference'
         elif valid_input == -2:
             result_err['status'] = 'error: missing cell reference'
+        elif valid_input == -3:
+            result_err['status'] = 'error: invalid value'
         
         #result_err['status'] = 'error: invalid input'
         return result_err 
@@ -112,9 +114,13 @@ def _find_index(loc):
     elif row < 15:
         index = 99 + (row - 9) * 9 + col - 6
     return index
-    
-    #-1 for invalid cell reference
-    #-2 for missing cell ref
+
+
+  
+#-1 for invalid cell reference
+#-2 for missing cell ref
+#-3 for invalid value
+#-4 for trying to change hint
 def _check_input(parms):
     result = 1
     try:
@@ -129,11 +135,12 @@ def _check_input(parms):
             result = -1
     except:
         result = -2
-    try:
-        if int(parms['value']) < 1 or int(parms['value']) > 9 or type(parms['value']) is not str:
-            result = False
-    except:
-        pass
+    if 'value' in parms:
+        try:
+            if int(parms['value']) < 1 or int(parms['value']) > 9 or type(parms['value']) is not str:
+                result = -3
+        except:
+            result = -3
     try:
         if len(parms['grid']) != 153:
             result = False
