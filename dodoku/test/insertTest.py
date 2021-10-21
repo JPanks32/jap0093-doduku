@@ -115,7 +115,7 @@ class InsertTest(TestCase):
     def test_Insert_030_find_location(self):
         loc = 'r11c7'
         actualResult = insert._find_location(loc)
-        self.assertEqual([11,7], actualResult)
+        self.assertEqual([11,7, 12], actualResult)
         
     def test_Insert_040_organize(self):
         grid = self.getGrid()
