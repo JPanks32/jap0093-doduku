@@ -218,7 +218,7 @@ class InsertTest(TestCase):
 
     def test_Insert_090_warning_insert(self):
         parms = self.getParms1()
-        parms['value'] = 5
+        parms['value'] = '5'
         expected_result = self.getValidResult2()
         expected_grid = expected_result['grid']
         expected_integrity = expected_result['integrity']
