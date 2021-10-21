@@ -3,12 +3,38 @@ import random
 from pip._vendor.pyparsing import col
 
 def _insert(parms):
-    result = {'status': 'insert stub'}
+    result_err = {'status': 'insert stub'}
+    result ={'grid':'','integrity':'','status':'ok'}
     try:
         parms['grid'] = _parse_grid(parms['grid'])
     except:
-        result['status'] = 'error: invalid grid'
-        return result
+        result_err['status'] = 'error: invalid grid'
+        return result_err
+    if not _check_input(parms):
+        result_err['status'] = 'error: invalid input'
+        return result_err 
+    value = 0
+    try:
+        value = int(parms['value'])
+    except:
+        pass
+    grid = parms['grid']
+    loc = parms['cell']
+    valid = _can_insert(value, loc, grid)
+    if valid == 1:
+        grid = _change_val(value, loc, grid)
+        result['grid'] = grid
+    elif valid == -1:
+        result['status'] = 'warning'
+        grid = _change_val(value, loc, grid)
+        result['grid'] = grid
+    elif valid == -2:
+        result_err['status'] = 'error: attempt to change fixed hint'
+        return result_err 
+    integrity = _find_integrity(grid)
+    rand = random.randint(0, 55)
+    integrity = integrity[rand:rand+8]
+    result['integrity'] = integrity
     
     return result
 
