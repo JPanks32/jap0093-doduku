@@ -143,7 +143,7 @@ def _organize(grid):
         if colCount > 14:
             colCount = 6
 
-    return block_row_maj, col_maj, row_maj
+    return block_row_maj, row_maj, col_maj
 #It concatinates all of the strings in the array into one string
 def _concat_columns(cols):
     result = ""
