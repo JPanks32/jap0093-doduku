@@ -209,6 +209,6 @@ class InsertTest(TestCase):
         actual_integrity = actual_result['integrity']
         actual_status = actual_result['status']
         self.assertEquals(expected_grid, actual_grid)
-        self.assertEquals(expected_integrity, actual_integrity)
+        self.assertIn(actual_integrity, expected_integrity)
         self.assertEquals(expected_status, actual_status)
 
