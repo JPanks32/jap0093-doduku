@@ -202,7 +202,13 @@ class InsertTest(TestCase):
         parms = self.getParms1()
         expected_result = self.getValidResult()
         expected_grid = expected_result['grid']
+        expected_integrity = expected_result['integrity']
+        expected_status = expected_result['status']
         actual_result = insert._insert(parms)
         actual_grid = actual_result['grid']
+        actual_integrity = actual_result['integrity']
+        actual_status = actual_result['status']
         self.assertEquals(expected_grid, actual_grid)
+        self.assertEquals(expected_integrity, actual_integrity)
+        self.assertEquals(expected_status, actual_status)
 
