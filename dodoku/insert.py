@@ -13,7 +13,7 @@ def _find_location(loc):
     return cell
 
 def _find_index(loc):
-    cell = _find_index(loc)
+    cell = _find_location(loc)
     row = cell[0] - 1
     col = cell[1] - 1
     index = 0
