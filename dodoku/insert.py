@@ -11,8 +11,12 @@ def _insert(parms):
         print(parms['grid'])
         result_err['status'] = 'error: invalid grid'
         return result_err
-    if not _check_input(parms) == 1:
-        result_err['status'] = 'error: invalid input'
+    valid_input =_check_input(parms)
+    if not valid_input == 1:
+        if valid_input == -1:
+            result_err['status'] = 'error: invalid cell reference'
+        
+        #result_err['status'] = 'error: invalid input'
         return result_err 
     value = 0
     try:

@@ -291,5 +291,5 @@ class InsertTest(TestCase):
         actualResult = insert._insert(parms)
         print(actualResult)
         print(len(actualResult))
-        expectedResult = 'error: error'
-        self.assertEqual(expectedResult, actualResult['status'])
+        expectedResult = {'status':'error: invalid cell reference'}
+        self.assertEqual(expectedResult, actualResult)
