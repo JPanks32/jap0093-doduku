@@ -143,7 +143,8 @@ def _can_insert(val, loc, grid):
     return 1
 
 def _change_val(val, loc, grid):
-
+    index = _find_index(loc)
+    grid[index] = val
     return grid
 
 def _column_major(grid):
