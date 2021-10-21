@@ -122,6 +122,10 @@ class InsertTest(TestCase):
         result = {'grid': [0,-2,0,0,-1,0,0,-4,0,-8,0,-1,-9,0,0,0,0,-5,0,0,0,0,-3,0,0,-1,0,0,-3,0,0,0,0,-4,0,-6,-5,0,-9,0,0,0,0,0,-7,0,0,0,0,0,0,-2,-8,0,-2,0,0,-6,0,0,0,0,5,0,-1,-4,0,-6,0,0,0,-6,0,0,-3,0,0,0,-2,0,0,-1,0,-9,0,-4,0,-5,-7,0,0,0,0,0,0,-7,0,0,-5,0,0,-6,0,0,0,0,-9,0,-2,0,0,0,0,0,-4,0,-8,-7,0,-9,0,0,0,0,0,0,0,-5,0,0,-9,0,0,0,0,-4,0,0,-6,0,-3,-9,0,0,0,-6,0,0,-5,0,0,-3,-1],'integrity': '2a2706879b00dc00937cea6d2f057b72bd1141ab09fd1b1e8a5c53f6fb6789db','status':'warning'}
         return result
     
+    def getValidResult3(self):
+        result = {'grid': [0,-2,0,0,-1,0,0,-4,0,-8,0,-1,-9,0,0,0,0,-5,0,0,0,0,-3,0,0,-1,0,0,-3,0,0,0,0,-4,0,-6,-5,0,-9,0,0,0,0,0,-7,0,0,0,0,0,0,-2,-8,0,-2,0,0,-6,0,0,0,0,0,0,-1,-4,0,-6,0,0,0,-6,0,0,-3,0,0,0,-2,0,0,-1,0,-9,0,-4,0,-5,-7,0,0,0,0,0,0,-7,0,0,-5,0,0,-6,0,0,0,0,-9,0,-2,0,0,0,0,0,-4,0,-8,-7,0,-9,0,0,0,0,0,0,0,-5,0,0,-9,0,0,0,0,-4,0,0,-6,0,-3,-9,0,0,0,-6,0,0,-5,0,0,-3,-1],'integrity': '5a3f0c31993d46bcb2ab5f3e8318e734231ee8bdb26cba545fadd7b1732888cd','status':'ok'}
+        return result
+    
     def getParms1(self):
         grid = '[0,-2,0,0,-1,0,0,-4,0,-8,0,-1,-9,0,0,0,0,-5,0,0,0,0,-3,0,0,-1,0,0,-3,0,0,0,0,-4,0,-6,-5,0,-9,0,0,0,0,0,-7,0,0,0,0,0,0,-2,-8,0,-2,0,0,-6,0,0,0,0,0,0,-1,-4,0,-6,0,0,0,-6,0,0,-3,0,0,0,-2,0,0,-1,0,-9,0,-4,0,-5,-7,0,0,0,0,0,0,-7,0,0,-5,0,0,-6,0,0,0,0,-9,0,-2,0,0,0,0,0,-4,0,-8,-7,0,-9,0,0,0,0,0,0,0,-5,0,0,-9,0,0,0,0,-4,0,0,-6,0,-3,-9,0,0,0,-6,0,0,-5,0,0,-3,-1]'
         parms={'value':'3', 'cell':'r7c9', 'grid': grid, 'integrity':'12345678'}
@@ -136,14 +140,35 @@ class InsertTest(TestCase):
         result = {'grid': [0,-2,0,0,-1,0,0,-4,0,-8,0,-1,-9,0,0,0,0,-5,0,0,0,0,-3,0,0,-1,0,0,-3,0,0,0,0,-4,0,-6,-5,0,-9,0,0,0,0,0,-7,0,0,0,0,0,0,-2,-8,0,-2,0,0,-6,0,0,0,0,3,0,-1,-4,0,-6,0,0,0,-6,0,0,-3,0,0,0,-2,0,0,-1,0,-9,0,-4,0,-5,-7,0,0,0,0,0,0,-7,0,0,-5,0,0,-6,0,0,0,0,-9,0,-2,0,0,0,0,0,-4,0,-8,-7,0,-9,0,0,0,0,0,0,0,-5,0,0,-9,0,0,0,0,-4,0,0,-6,0,-3,-9,0,0,0,-6,0,0,-5,0,0,-3,-1],'integrity': '72a87aa0938dfb1b7edf4c31cd75bb0db75e916ff3f7ea9c1671cdd569cef463','status':'ok'}
         return result
     
+    #  Happy path tests
+    #        test 010: checks the validity of inputs
+    #            result: True
+    #        test 020: calculates the integrity
+    #            result: 64 sha-256
+    #        test 030: parses the cell into array that's easy to read
+    #            result: [row, col, cell]
+    #        test 040: organizes the grid into 3 2d arrays, sorted by row, column, and block
+    #            result: 3 arrays
+    #        test 050: calculates the index in the origional grid list of a cell
+    #            result: int
+    #        test 060: checks if it can insert, and if there would be a conflict
+    #            result: int (1 for valid, -1 for conflict, -2 for error if trying to replace a hint)
+    #        test 070: Actually changes the cell in grid
+    #            result: grid
+    #        test 080: Main function with a valid, nonconflicting value and location
+    #            result: dict
+    #        test 090: Main function with a valid but conflicting value and location
+    #            result: dict
+    #        test 100: Main function removing a cell
+    #            result: dict
+    #        
+    
     def test_Insert_010_CheckInput(self):
         expectedResult = True
         grid = self.getGrid()
         parms = {'value': '3', 'cell' : 'r7c9', 'grid': grid , 'integrity' : 'bcb2ab5f'}
         actualResult = insert._check_input(parms)
         self.assertEqual(expectedResult, actualResult)
-        
-        
         
     def test_Insert_020_find_integrity(self):
         grid = self.getGrid()
@@ -198,7 +223,6 @@ class InsertTest(TestCase):
         self.assertEquals(-1, ans2)
         self.assertEquals(-2, ans3)
 
-        
     def test_Insert_070_change_val(self):
         grid = self.getGrid()
         val = 3
@@ -238,7 +262,7 @@ class InsertTest(TestCase):
     
     def test_Insert_100_remove(self):
         parms = self.getParms2()
-        expected_result = self.getValidResult2()
+        expected_result = self.getValidResult3()
         expected_grid = expected_result['grid']
         expected_integrity = expected_result['integrity']
         expected_status = expected_result['status']
@@ -249,3 +273,23 @@ class InsertTest(TestCase):
         self.assertEquals(expected_grid, actual_grid)
         self.assertIn(actual_integrity, expected_integrity)
         self.assertEquals(expected_status, actual_status)
+
+    #  Sad path tests 
+    #        test 910: non-numeric string:  'a'
+    #            result: error message
+    #        test 920: non-integer string:  '1.1'
+    #            result: error message
+    #        test 930: lower bound of string:  '0'
+    #            result: error message
+    #        test 940: upper bound of string:  '4'
+    #            result: error message
+    
+    
+    def test100_910_invalid_cell(self):
+        grid = '[0,-2,0,0,-1,0,0,-4,0,-8,0,-1,-9,0,0,0,0,-5,0,0,0,0,-3,0,0,-1,0,0,-3,0,0,0,0,-4,0,-6,-5,0,-9,0,0,0,0,0,-7,0,0,0,0,0,0,-2,-8,0,-2,0,0,-6,0,0,0,0,0,0,-1,-4,0,-6,0,0,0,-6,0,0,-3,0,0,0,-2,0,0,-1,0,-9,0,-4,0,-5,-7,0,0,0,0,0,0,-7,0,0,-5,0,0,-6,0,0,0,0,-9,0,-2,0,0,0,0,0,-4,0,-8,-7,0,-9,0,0,0,0,0,0,0,-5,0,0,-9,0,0,0,0,-4,0,0,-6,0,-3,-9,0,0,0,-6,0,0,-5,0,0,-3,-1]'
+        parms={'value':'3', 'cell':'r10c1', 'grid': grid, 'integrity':'12345678'}
+        actualResult = insert._insert(parms)
+        print(actualResult)
+        print(len(actualResult))
+        expectedResult = 'error: error'
+        self.assertEqual(expectedResult, actualResult['status'])

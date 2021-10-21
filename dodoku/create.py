@@ -2,6 +2,7 @@ import hashlib
 import random
 def _create(parms):
     result = {'grid': '', 'status': '', 'integrity': ''}
+    result_err = {'status':'error: error'}
     lvl = 'level'
     
     
@@ -63,8 +64,10 @@ def _create(parms):
             x = parms[lvl]
             if(x != '1' and x != '2' and x != '3'):
                 result['status'] = "error: "
+                return result_err
         except:
             result['status'] = "error: "
+            return result_err
             
     if result['status'] == 'ok':
         integ = _hash(result['grid'])  

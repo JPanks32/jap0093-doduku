@@ -286,25 +286,25 @@ class CreateTest(TestCase):
     def test100_910NonNumericLevel(self):
         parms = {'op': 'create', 'level' : 'a'}
         actualResult = create._create(parms)
-        expectedResult = 'error: '
+        expectedResult = 'error: error'
         self.assertEqual(expectedResult, actualResult['status'])
         
     def test100_920NonIntegerLevel(self):
         parms = {'op': 'create', 'level' : '1.1'}
         actualResult = create._create(parms)
-        expectedResult = 'error: '
+        expectedResult = 'error: error'
         self.assertEqual(expectedResult, actualResult['status'])
         
     def test100_930LowerBound(self):
         parms = {'op': 'create', 'level' : '0'}
         actualResult = create._create(parms)
-        expectedResult = 'error: '
+        expectedResult = 'error: error'
         self.assertEqual(expectedResult, actualResult['status'])
         
     def test100_940UpperBound(self):
         parms = {'op': 'create', 'level' : '4'}
         actualResult = create._create(parms)
-        expectedResult = 'error: '
+        expectedResult = 'error: error'
         self.assertEqual(expectedResult, actualResult['status'])
         
         

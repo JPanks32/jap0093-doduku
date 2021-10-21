@@ -11,7 +11,7 @@ def _insert(parms):
         print(parms['grid'])
         result_err['status'] = 'error: invalid grid'
         return result_err
-    if not _check_input(parms):
+    if not _check_input(parms) == 1:
         result_err['status'] = 'error: invalid input'
         return result_err 
     value = 0
@@ -107,20 +107,21 @@ def _find_index(loc):
         index = 99 + (row - 9) * 9 + col - 6
     return index
     
+    #-1 for invalid cell reference
 def _check_input(parms):
-    result = True
+    result = 1
     try:
         cell = _find_location(parms['cell'])
         row = cell[0]
         col = cell[1]
         if row < 1 or col < 1 or row > 15 or col > 15:
-            result = False
+            result = -1
         elif row < 7 and col > 9:
-            result = False
+            result = -1
         elif row > 9 and col < 7:
-            result = False
+            result = -1
     except:
-        result = False
+        result = -1
     try:
         if int(parms['value']) < 1 or int(parms['value']) > 9 or type(parms['value']) is not str:
             result = False
