@@ -15,6 +15,7 @@ class CreateTest(TestCase):
     #         normal:  dictionary with "grid", "integrity", and "status"
     #         abnormal: error
     #         side effects:  none
+
     
     def GenerateGrid(self, level):
         if level == 1:

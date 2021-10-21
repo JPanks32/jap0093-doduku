@@ -4,8 +4,21 @@ from pip._vendor.pyparsing import col
 
 def _insert(parms):
     result = {'status': 'insert stub'}
+    try:
+        parms['grid'] = _parse_grid(parms['grid'])
+    except:
+        result['status'] = 'error: invalid grid'
+        return result
+    
     return result
 
+def _parse_grid(grid_str):
+    grid_str = grid_str.split('[')[1].split(']')[0].split(',')
+    grid = [0]*153
+    for index in range(153):
+        grid[index] = int(grid_str[index])
+    return grid
+    
 def _find_location(loc):
     cell = loc.split('r')[1].split('c')
     cell[0] = int(cell[0])
@@ -107,6 +120,10 @@ def _check_input(parms):
 def _can_insert(val, loc, grid):
     blocks, rows, cols = _organize(grid)
     index = _find_index(loc)
+    if grid[index] < 0:
+        return -2
+    if val == 0:
+        return 1
     cell = _find_location(loc)
     row = cell[0] - 1
     col = cell[1] - 1
@@ -132,8 +149,6 @@ def _can_insert(val, loc, grid):
     else:
         _rows = rows[row]
         _cols = cols[col]
-    if grid[index] < 0:
-        return -2
     if val in rows[row] or val * -1 in rows[row]:
         return -1
     elif val in cols[col] or val * -1 in cols[col]:
