@@ -127,6 +127,11 @@ class InsertTest(TestCase):
         parms={'value':'3', 'cell':'r7c9', 'grid': grid, 'integrity':'12345678'}
         return parms
     
+    def getParms2(self):
+        grid = '[0,-2,0,0,-1,0,0,-4,0,-8,0,-1,-9,0,0,0,0,-5,0,0,0,0,-3,0,0,-1,0,0,-3,0,0,0,0,-4,0,-6,-5,0,-9,0,0,0,0,0,-7,0,0,0,0,0,0,-2,-8,0,-2,0,0,-6,0,0,0,0,0,0,-1,-4,0,-6,0,0,0,-6,0,0,-3,0,0,0,-2,0,0,-1,0,-9,0,-4,0,-5,-7,0,0,0,0,0,0,-7,0,0,-5,0,0,-6,0,0,0,0,-9,0,-2,0,0,0,0,0,-4,0,-8,-7,0,-9,0,0,0,0,0,0,0,-5,0,0,-9,0,0,0,0,-4,0,0,-6,0,-3,-9,0,0,0,-6,0,0,-5,0,0,-3,-1]'
+        parms={'cell':'r7c9', 'grid': grid, 'integrity':'12345678'}
+        return parms
+    
     def getValidResult(self):
         result = {'grid': [0,-2,0,0,-1,0,0,-4,0,-8,0,-1,-9,0,0,0,0,-5,0,0,0,0,-3,0,0,-1,0,0,-3,0,0,0,0,-4,0,-6,-5,0,-9,0,0,0,0,0,-7,0,0,0,0,0,0,-2,-8,0,-2,0,0,-6,0,0,0,0,3,0,-1,-4,0,-6,0,0,0,-6,0,0,-3,0,0,0,-2,0,0,-1,0,-9,0,-4,0,-5,-7,0,0,0,0,0,0,-7,0,0,-5,0,0,-6,0,0,0,0,-9,0,-2,0,0,0,0,0,-4,0,-8,-7,0,-9,0,0,0,0,0,0,0,-5,0,0,-9,0,0,0,0,-4,0,0,-6,0,-3,-9,0,0,0,-6,0,0,-5,0,0,-3,-1],'integrity': '72a87aa0938dfb1b7edf4c31cd75bb0db75e916ff3f7ea9c1671cdd569cef463','status':'ok'}
         return result
@@ -134,7 +139,7 @@ class InsertTest(TestCase):
     def test_Insert_010_CheckInput(self):
         expectedResult = True
         grid = self.getGrid()
-        parms = {'value': '3', 'cell' : 'r7c9', 'grid': grid , 'integrity' : '93d46bcb'}
+        parms = {'value': '3', 'cell' : 'r7c9', 'grid': grid , 'integrity' : 'bcb2ab5f'}
         actualResult = insert._check_input(parms)
         self.assertEqual(expectedResult, actualResult)
         
@@ -219,6 +224,20 @@ class InsertTest(TestCase):
     def test_Insert_090_warning_insert(self):
         parms = self.getParms1()
         parms['value'] = '5'
+        expected_result = self.getValidResult2()
+        expected_grid = expected_result['grid']
+        expected_integrity = expected_result['integrity']
+        expected_status = expected_result['status']
+        actual_result = insert._insert(parms)
+        actual_grid = actual_result['grid']
+        actual_integrity = actual_result['integrity']
+        actual_status = actual_result['status']
+        self.assertEquals(expected_grid, actual_grid)
+        self.assertIn(actual_integrity, expected_integrity)
+        self.assertEquals(expected_status, actual_status)
+    
+    def test_Insert_100_remove(self):
+        parms = self.getParms2()
         expected_result = self.getValidResult2()
         expected_grid = expected_result['grid']
         expected_integrity = expected_result['integrity']

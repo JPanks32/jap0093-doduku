@@ -8,6 +8,7 @@ def _insert(parms):
     try:
         parms['grid'] = _parse_grid(parms['grid'])
     except:
+        print(parms['grid'])
         result_err['status'] = 'error: invalid grid'
         return result_err
     if not _check_input(parms):
@@ -137,6 +138,8 @@ def _check_input(parms):
     try:
         if len(parms['integrity']) != 8 or type(parms['integrity']) is not str:
             result = False
+       # elif parms['integrity'] not in _find_integrity(_parse_grid(parms['grid'])):
+            #result = False
     except:
         result = False
     return result
