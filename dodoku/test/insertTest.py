@@ -275,7 +275,7 @@ class InsertTest(TestCase):
         self.assertEquals(expected_status, actual_status)
 
     #  Sad path tests 
-    #        test 910: non-numeric string:  'a'
+    #        test 910: tests invalid cell reference
     #            result: error message
     #        test 920: non-integer string:  '1.1'
     #            result: error message
@@ -289,7 +289,17 @@ class InsertTest(TestCase):
         grid = '[0,-2,0,0,-1,0,0,-4,0,-8,0,-1,-9,0,0,0,0,-5,0,0,0,0,-3,0,0,-1,0,0,-3,0,0,0,0,-4,0,-6,-5,0,-9,0,0,0,0,0,-7,0,0,0,0,0,0,-2,-8,0,-2,0,0,-6,0,0,0,0,0,0,-1,-4,0,-6,0,0,0,-6,0,0,-3,0,0,0,-2,0,0,-1,0,-9,0,-4,0,-5,-7,0,0,0,0,0,0,-7,0,0,-5,0,0,-6,0,0,0,0,-9,0,-2,0,0,0,0,0,-4,0,-8,-7,0,-9,0,0,0,0,0,0,0,-5,0,0,-9,0,0,0,0,-4,0,0,-6,0,-3,-9,0,0,0,-6,0,0,-5,0,0,-3,-1]'
         parms={'value':'3', 'cell':'r10c1', 'grid': grid, 'integrity':'12345678'}
         actualResult = insert._insert(parms)
-        print(actualResult)
-        print(len(actualResult))
         expectedResult = {'status':'error: invalid cell reference'}
         self.assertEqual(expectedResult, actualResult)
+        
+    def test100_920_invalid_cell(self):
+        grid = '[0,-2,0,0,-1,0,0,-4,0,-8,0,-1,-9,0,0,0,0,-5,0,0,0,0,-3,0,0,-1,0,0,-3,0,0,0,0,-4,0,-6,-5,0,-9,0,0,0,0,0,-7,0,0,0,0,0,0,-2,-8,0,-2,0,0,-6,0,0,0,0,0,0,-1,-4,0,-6,0,0,0,-6,0,0,-3,0,0,0,-2,0,0,-1,0,-9,0,-4,0,-5,-7,0,0,0,0,0,0,-7,0,0,-5,0,0,-6,0,0,0,0,-9,0,-2,0,0,0,0,0,-4,0,-8,-7,0,-9,0,0,0,0,0,0,0,-5,0,0,-9,0,0,0,0,-4,0,0,-6,0,-3,-9,0,0,0,-6,0,0,-5,0,0,-3,-1]'
+        parms={'value':'3', 'grid': grid, 'integrity':'12345678'}
+        actualResult = insert._insert(parms)
+        print(actualResult)
+        print(len(actualResult))
+        expectedResult = {'status':'error: missing cell reference'}
+        self.assertEqual(expectedResult, actualResult) 
+        
+        
+        
