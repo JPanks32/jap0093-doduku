@@ -10,6 +10,12 @@ class InsertTest(TestCase):
     #         normal:  dictionary with "grid", "integrity", and "status"
     #         abnormal: error
     #         side effects:  none
+    def indexGrid(self):
+        grid = [0]*153
+        for i in range(0,153):
+            grid[i] = i
+        return grid
+    
     def getGrid(self):
         grid = [0,-2,0,0,-1,0,0,-4,0,
                 -8,0,-1,-9,0,0,0,0,-5,
@@ -120,3 +126,22 @@ class InsertTest(TestCase):
         self.assertEqual(blocks, actualBlocks)
         self.assertEqual(cols, actualCols)
         self.assertEqual(rows, actualRows)
+        
+    def test_Insert_050_index_location(self):
+        grid = self.indexGrid()
+        loc1 = 'r6c5'
+        ind1 = 41
+        loc2 = 'r8c11'
+        ind2 = 79
+        loc3 = 'r11c11'
+        ind3 = 112
+        loc4 = 'r7c10'
+        ind4 = 99
+        actualInd1 = insert._find_index(loc1)
+        actualInd2 = insert._find_index(loc2)
+        actualInd3 = insert._find_index(loc3)
+        actualInd4 = insert._find_index(loc4)
+        self.assertEqual(ind1, actualInd1)
+        self.assertEqual(ind2, actualInd2)
+        self.assertEqual(ind3, actualInd3)
+        self.assertEqual(ind4, actualInd4)

@@ -1,5 +1,6 @@
 import hashlib
 import random
+from pip._vendor.pyparsing import col
 
 def _insert(parms):
     result = {'status': 'insert stub'}
@@ -11,6 +12,14 @@ def _find_location(loc):
     cell[1] = int(cell[1])
     return cell
 
+def _find_index(loc):
+    cell = _find_index(loc)
+    row = cell[0] - 1
+    col = cell[1] - 1
+    index = 0
+    
+    return index
+    
 def _check_input(parms):
     result = True
     try:
@@ -144,6 +153,7 @@ def _organize(grid):
             colCount = 6
 
     return block_row_maj, row_maj, col_maj
+
 #It concatinates all of the strings in the array into one string
 def _concat_columns(cols):
     result = ""
