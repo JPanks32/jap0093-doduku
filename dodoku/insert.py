@@ -15,6 +15,8 @@ def _insert(parms):
     if not valid_input == 1:
         if valid_input == -1:
             result_err['status'] = 'error: invalid cell reference'
+        elif valid_input == -2:
+            result_err['status'] = 'error: missing cell reference'
         
         #result_err['status'] = 'error: invalid input'
         return result_err 
@@ -112,6 +114,7 @@ def _find_index(loc):
     return index
     
     #-1 for invalid cell reference
+    #-2 for missing cell ref
 def _check_input(parms):
     result = 1
     try:
@@ -125,7 +128,7 @@ def _check_input(parms):
         elif row > 9 and col < 7:
             result = -1
     except:
-        result = -1
+        result = -2
     try:
         if int(parms['value']) < 1 or int(parms['value']) > 9 or type(parms['value']) is not str:
             result = False
