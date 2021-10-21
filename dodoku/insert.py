@@ -103,6 +103,7 @@ def _check_input(parms):
     return result
 
 #returns -2 for fixed hint, -1 for conflict, 1 for success
+
 def _can_insert(val, loc, grid):
     blocks, rows, cols = _organize(grid)
     index = _find_index(loc)
@@ -110,6 +111,27 @@ def _can_insert(val, loc, grid):
     row = cell[0] - 1
     col = cell[1] - 1
     block = cell[2] - 1
+    if block < 8:
+        if len(rows[row]) == 15:
+            _rows = rows[row][0:9]
+        else:
+            _rows = rows[row]
+        if len(cols[col]) == 15:
+            _cols = cols[col][0:9]
+        else:
+            _cols = cols[col]
+    elif block > 8:
+        if len(rows[row]) == 15:
+            _rows = rows[row][6:15]
+        else:
+            _rows = rows[row]
+        if len(cols[col]) == 15:
+            _cols = cols[col][6:15]
+        else:
+            _cols = cols[col]
+    else:
+        _rows = rows[row]
+        _cols = cols[col]
     if grid[index] < 0:
         return -2
     if val in rows[row] or val * -1 in rows[row]:
@@ -118,8 +140,11 @@ def _can_insert(val, loc, grid):
         return -1
     elif val in blocks[block] or val * -1 in blocks[block]:
         return -1
-   # if val 
     return 1
+
+def _change_val(val, loc, grid):
+
+    return grid
 
 def _column_major(grid):
     arr = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]

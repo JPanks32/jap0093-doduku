@@ -152,10 +152,36 @@ class InsertTest(TestCase):
         val1 = 3
         val2 = 5
         loc2 = 'r1c2'
+        loc3 = 'r12c13'
         ans1 = insert._can_insert(val1, loc, grid)
         ans2 = insert._can_insert(val2, loc, grid)
         ans3 = insert._can_insert(val2, loc2, grid)
         self.assertEquals(1, ans1)
         self.assertEquals(-1, ans2)
         self.assertEquals(-2, ans3)
+
+        
+    def test_Insert_060_change_val(self):
+        grid = self.getGrid()
+        val = 3
+        loc = 'r7c9'
+        expected_grid = [0,-2,0,0,-1,0,0,-4,0,
+                         -8,0,-1,-9,0,0,0,0,-5,
+                         0,0,0,0,-3,0,0,-1,0,
+                         0,-3,0,0,0,0,-4,0,-6,
+                         -5,0,-9,0,0,0,0,0,-7,
+                         0,0,0,0,0,0,-2,-8,0,
+                         -2,0,0,-6,0,0,0,0,3,
+                         0,-1,-4,0,-6,0,0,0,-6,
+                         0,0,-3,0,0,0,-2,0,0,
+                         -1,0,-9,0,-4,0,-5,-7,0,
+                         0,0,0,0,0,-7,0,0,-5,
+                         0,0,-6,0,0,0,0,-9,0,
+                         -2,0,0,0,0,0,-4,0,-8,
+                         -7,0,-9,0,0,0,0,0,0,
+                         0,-5,0,0,-9,0,0,0,0,
+                         -4,0,0,-6,0,-3,-9,0,0,
+                         0,-6,0,0,-5,0,0,-3,-1]
+        new_grid = insert._change_val(val, loc, grid)
+        self.assertEquals(new_grid, expected_grid)
 
