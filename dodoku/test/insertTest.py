@@ -145,3 +145,17 @@ class InsertTest(TestCase):
         self.assertEqual(ind2, actualInd2)
         self.assertEqual(ind3, actualInd3)
         self.assertEqual(ind4, actualInd4)
+        
+    def test_Insert_060_can_insert(self):
+        grid = self.getGrid()
+        loc = 'r7c9'
+        val1 = 3
+        val2 = 5
+        blocks = self.getBlocks()
+        cols = self.getCols()
+        rows = self.getRows()
+        ans1 = insert._can_insert(val1, loc, blocks, rows, cols)
+        ans2 = insert._can_insert(val2, loc, blocks, rows, cols)
+        self.assertTrue(ans1)
+        self.assertFalse(ans2)
+

@@ -28,7 +28,15 @@ def _find_index(loc):
 def _check_input(parms):
     result = True
     try:
-        _find_location(parms['cell'])
+        cell = _find_location(parms['cell'])
+        row = cell[0]
+        col = cell[1]
+        if row < 1 or col < 1 or row > 15 or col > 15:
+            result = False
+        elif row < 7 and col > 9:
+            result = False
+        elif row > 9 and col < 7:
+            result = False
     except:
         result = False
     try:
@@ -51,6 +59,9 @@ def _check_input(parms):
     except:
         result = False
     return result
+
+def _can_insert(val, loc, blocks, rows, cols):
+    return False
 
 def _column_major(grid):
     arr = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
@@ -160,6 +171,7 @@ def _organize(grid):
     return block_row_maj, row_maj, col_maj
 
 #It concatinates all of the strings in the array into one string
+
 def _concat_columns(cols):
     result = ""
     for num in cols:
@@ -168,6 +180,7 @@ def _concat_columns(cols):
         
 #it hash sha256 the grid provided by passing it through two other methods to turn it into
     #a column-major string, then casts the hash function on it        
+
 def _find_integrity(grid):
     col_maj = _column_major(grid)
     col_str =_concat_columns(col_maj)
