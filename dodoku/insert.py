@@ -17,7 +17,12 @@ def _find_index(loc):
     row = cell[0] - 1
     col = cell[1] - 1
     index = 0
-    
+    if row < 6:
+        index = row * 9 + col
+    elif row < 9:
+        index = 54 + (row - 6) * 15 + col
+    elif row < 15:
+        index = 99 + (row - 9) * 9 + col - 6
     return index
     
 def _check_input(parms):

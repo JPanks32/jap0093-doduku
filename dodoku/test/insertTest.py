@@ -130,12 +130,12 @@ class InsertTest(TestCase):
     def test_Insert_050_index_location(self):
         grid = self.indexGrid()
         loc1 = 'r6c5'
-        ind1 = 41
+        ind1 = 49
         loc2 = 'r8c11'
         ind2 = 79
         loc3 = 'r11c11'
         ind3 = 112
-        loc4 = 'r7c10'
+        loc4 = 'r10c7'
         ind4 = 99
         actualInd1 = insert._find_index(loc1)
         actualInd2 = insert._find_index(loc2)
