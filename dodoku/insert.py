@@ -10,6 +10,48 @@ def _find_location(loc):
     cell = loc.split('r')[1].split('c')
     cell[0] = int(cell[0])
     cell[1] = int(cell[1])
+    row = cell[0]
+    col = cell[1]
+    cell.append(0)
+    if row < 4:
+        if col < 4:
+            cell[2] = 1
+        elif col < 7:
+            cell[2] = 2
+        elif col < 10:
+            cell[2] = 3
+    elif row < 7:
+        if col < 4:
+            cell[2] = 4
+        elif col < 7:
+            cell[2] = 5
+        elif col < 10:
+            cell[2] = 6
+    elif row < 10:
+        if col < 4:
+            cell[2] = 7
+        elif col < 7:
+            cell[2] = 8
+        elif col < 10:
+            cell[2] = 9
+        elif col < 13:
+            cell[2] = 10
+        elif col < 16:
+            cell[2] = 11
+    elif row < 13:
+        if col < 10:
+            cell[2] = 12
+        elif col < 13:
+            cell[2] = 13
+        elif col < 16:
+            cell[2] = 14
+    elif row < 16:
+        if col < 10:
+            cell[2] = 15
+        elif col < 13:
+            cell[2] = 16
+        elif col < 16:
+            cell[2] = 17
     return cell
 
 def _find_index(loc):
@@ -60,8 +102,24 @@ def _check_input(parms):
         result = False
     return result
 
-def _can_insert(val, loc, blocks, rows, cols):
-    return False
+#returns -2 for fixed hint, -1 for conflict, 1 for success
+def _can_insert(val, loc, grid):
+    blocks, rows, cols = _organize(grid)
+    index = _find_index(loc)
+    cell = _find_location(loc)
+    row = cell[0] - 1
+    col = cell[1] - 1
+    block = cell[2] - 1
+    if grid[index] < 0:
+        return -2
+    if val in rows[row] or val * -1 in rows[row]:
+        return -1
+    elif val in cols[col] or val * -1 in cols[col]:
+        return -1
+    elif val in blocks[block] or val * -1 in blocks[block]:
+        return -1
+   # if val 
+    return 1
 
 def _column_major(grid):
     arr = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]

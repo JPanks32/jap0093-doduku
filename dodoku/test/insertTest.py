@@ -151,11 +151,11 @@ class InsertTest(TestCase):
         loc = 'r7c9'
         val1 = 3
         val2 = 5
-        blocks = self.getBlocks()
-        cols = self.getCols()
-        rows = self.getRows()
-        ans1 = insert._can_insert(val1, loc, blocks, rows, cols)
-        ans2 = insert._can_insert(val2, loc, blocks, rows, cols)
-        self.assertTrue(ans1)
-        self.assertFalse(ans2)
+        loc2 = 'r1c2'
+        ans1 = insert._can_insert(val1, loc, grid)
+        ans2 = insert._can_insert(val2, loc, grid)
+        ans3 = insert._can_insert(val2, loc2, grid)
+        self.assertEquals(1, ans1)
+        self.assertEquals(-1, ans2)
+        self.assertEquals(-2, ans3)
 
