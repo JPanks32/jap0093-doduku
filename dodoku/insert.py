@@ -298,7 +298,11 @@ def _concat_columns(cols):
     #a column-major string, then casts the hash function on it        
 
 def _find_integrity(grid):
-    block, row, col_maj = _organize(grid)
+    block, row, cols = _organize(grid)
+    col_maj = []
+    for col in cols:
+        for num in col:
+            col_maj.append(num)
     col_str =_concat_columns(col_maj)
     myHash = hashlib.sha256()
     myHash.update(col_str.encode())
