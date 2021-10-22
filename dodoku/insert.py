@@ -122,6 +122,7 @@ def _find_index(loc):
 #-1 for invalid cell reference
 #-2 for missing cell ref
 #-3 for invalid value
+#-4 for integrity issues
 
 def _check_input(parms):
     result = 1
@@ -207,35 +208,6 @@ def _change_val(val, loc, grid):
     index = _find_index(loc)
     grid[index] = val
     return grid
-
-def _column_major(grid):
-    arr = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
-    result = []
-    colCount = 0
-    for i in range(0, 54):
-        arr[colCount].append(grid[i])
-        colCount += 1
-        if colCount > 8:
-            colCount = 0
-            
-    colCount = 0
-    for i in range(54,99):
-        arr[colCount].append(grid[i])
-        colCount += 1
-        if colCount > 14:
-            colCount = 0
-            
-    colCount = 6
-    for i in range(99, 153):
-        arr[colCount].append(grid[i])
-        colCount += 1
-        if colCount > 14:
-            colCount = 6
-
-    for col in arr:
-        for num in col:
-            result.append(num)
-    return result
 
 def _organize(grid):
     col_maj = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
@@ -326,7 +298,7 @@ def _concat_columns(cols):
     #a column-major string, then casts the hash function on it        
 
 def _find_integrity(grid):
-    col_maj = _column_major(grid)
+    block, row, col_maj = _organize(grid)
     col_str =_concat_columns(col_maj)
     myHash = hashlib.sha256()
     myHash.update(col_str.encode())
