@@ -19,6 +19,8 @@ def _insert(parms):
             result_err['status'] = 'error: missing cell reference'
         elif valid_input == -3:
             result_err['status'] = 'error: invalid value'
+        elif valid_input == -4:
+            result_err['status'] = 'error: integrity mismatch'
         
         #result_err['status'] = 'error: invalid input'
         return result_err 
@@ -151,11 +153,11 @@ def _check_input(parms):
         result = False
     try:
         if len(parms['integrity']) != 8 or type(parms['integrity']) is not str:
-            result = False
-       # elif parms['integrity'] not in _find_integrity(_parse_grid(parms['grid'])):
-            #result = False
+            result = -4
+        elif parms['integrity'] not in _find_integrity(parms['grid']):
+            result = -4
     except:
-        result = False
+        result = -4
     return result
 
 #returns -2 for fixed hint, -1 for conflict, 1 for success
