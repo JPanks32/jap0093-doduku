@@ -8,7 +8,6 @@ def _insert(parms):
     try:
         parms['grid'] = _parse_grid(parms['grid'])
     except:
-        print(parms['grid'])
         result_err['status'] = 'error: invalid grid'
         return result_err
     valid_input =_check_input(parms)
