@@ -122,6 +122,7 @@ def _find_index(loc):
 #-1 for invalid cell reference
 #-2 for missing cell ref
 #-3 for invalid value
+
 def _check_input(parms):
     result = 1
     try:
@@ -240,7 +241,6 @@ def _organize(grid):
     col_maj = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
     row_maj = [[0]* 9,[0]* 9,[0]* 9,[0]* 9,[0]* 9,[0]* 9,[0]* 15,[0]* 15,[0]* 15,[0]* 9,[0]* 9,[0]* 9,[0]* 9,[0]* 9,[0]* 9]
     block_row_maj = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
-    result = []
     rowCount = 0
     colCount = 0
     for i in range(0, 54):
