@@ -313,12 +313,18 @@ class InsertTest(TestCase):
         expectedResult = {'status':'error: attempt to change fixed hint'}
         self.assertEqual(expectedResult, actualResult) 
 
-    def test100_950_target_hint(self):
+    def test100_950_integrity_mismatch(self):
         grid = '[0,-2,0,0,-1,0,0,-4,0,-8,0,-1,-9,0,0,0,0,-5,0,0,0,0,-3,0,0,-1,0,0,-3,0,0,0,0,-4,0,-6,-5,0,-9,0,0,0,0,0,-7,0,0,0,0,0,0,-2,-8,0,-2,0,0,-6,0,0,0,0,0,0,-1,-4,0,-6,0,0,0,-6,0,0,-3,0,0,0,-2,0,0,-1,0,-9,0,-4,0,-5,-7,0,0,0,0,0,0,-7,0,0,-5,0,0,-6,0,0,0,0,-9,0,-2,0,0,0,0,0,-4,0,-8,-7,0,-9,0,0,0,0,0,0,0,-5,0,0,-9,0,0,0,0,-4,0,0,-6,0,-3,-9,0,0,0,-6,0,0,-5,0,0,-3,-1]'
         parms={'value':'1', 'cell':'r7c9', 'grid': grid, 'integrity':'1234abcd'}
         actualResult = insert._insert(parms)
         expectedResult = {'status':'error: integrity mismatch'}
         self.assertEqual(expectedResult, actualResult) 
 
-
+    def test100_950_invalid_grid(self):
+        grid = '[0,-2,0,-1,-9,0,0,0,0,-5,0,0,0,0,-3,0,0,-1,0,0,-3,0,0,0,0,-4,0,-6,-5,0,-9,0,0,0,0,0,-7,0,0,0,0,0,0,-2,-8,0,-2,0,0,-6,0,0,0,0,0,0,-1,-4,0,-6,0,0,0,-6,0,0,-3,0,0,0,-2,0,0,-1,0,-9,0,-4,0,-5,-7,0,0,0,0,0,0,-7,0,0,-5,0,0,-6,0,0,0,0,-9,0,-2,0,0,0,0,0,-4,0,-8,-7,0,-9,0,0,0,0,0,0,0,-5,0,0,-9,0,0,0,0,-4,0,0,-6,0,-3,-9,0,0,0,-6,0,0,-5,0,0,-3,-1]'
+        parms={'value':'3', 'cell':'r7c9', 'grid': grid, 'integrity':'93d46bcb'}
+        actualResult = insert._insert(parms)
+        expectedResult = {'status':'error: invalid grid'}
+        self.assertEqual(expectedResult, actualResult)
+        
          
