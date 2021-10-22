@@ -219,7 +219,6 @@ def _organize(grid):
         row_maj[rowCount][colCount] = grid[i]
         col_maj[colCount].append(grid[i])
         
-        
         if rowCount < 3:
             if colCount < 3:
                 block_row_maj[0].append(grid[i])
