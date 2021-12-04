@@ -294,7 +294,7 @@ def _concat_columns(cols):
         
 #it hash sha256 the grid provided by passing it through two other methods to turn it into
     #a column-major string, then casts the hash function on it        
-
+#
 def _find_integrity(grid):
     block, row, cols = _organize(grid)
     col_maj = []
