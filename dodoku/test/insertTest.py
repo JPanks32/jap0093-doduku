@@ -273,6 +273,27 @@ class InsertTest(TestCase):
         self.assertEquals(expected_grid, actual_grid)
         self.assertIn(actual_integrity, expected_integrity)
         self.assertEquals(expected_status, actual_status)
+        
+    def test_Insert_110_cell_case_sensitive(self):
+        parms = self.getParms1()
+        expected_result = self.getValidResult()
+        expected_grid = expected_result['grid']
+        expected_integrity = expected_result['integrity']
+        expected_status = expected_result['status']
+        for i in range(0,4):
+            if i == 1:
+                parms['cell'] = 'R7c9'
+            elif i ==2:
+                parms['cell'] = 'r7C9'
+            elif i == 3:
+                parms['cell'] = 'R7c9'
+            actual_result = insert._insert(parms)
+            actual_grid = actual_result['grid']
+            actual_integrity = actual_result['integrity']
+            actual_status = actual_result['status']
+            self.assertEquals(expected_grid, actual_grid)
+            self.assertIn(actual_integrity, expected_integrity)
+            self.assertEquals(expected_status, actual_status)
 
     #  Sad path tests 
     #        test 910: tests invalid cell reference
