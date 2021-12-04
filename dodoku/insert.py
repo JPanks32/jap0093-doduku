@@ -56,12 +56,28 @@ def _parse_grid(grid_str):
     return grid
     
 def _find_location(loc):
-    cell = loc.split('r')[1].split('c')
-    cell[0] = int(cell[0])
-    cell[1] = int(cell[1])
+    leng = len(loc)
+    col_index = 2
+    cell = [-1,-1,-1]
+    if leng != 4:
+        col_index = 3
+        if leng == 5:
+            if not ((loc[1:3].isdigit() and loc[4].isdigit()) or (loc[1].isdigit() and loc[3:5].isdigit())):
+                return cell
+            if not loc[1:3].isdigit():
+                col_index = 2
+        elif leng == 6:
+            if not ((loc[1:3].isdigit() and loc[4:6].isdigit())):
+                return cell
+        else:
+            return cell
+    if str.lower(str(loc[0])) != 'r' or str.lower(str(loc[col_index])) != 'c':
+        return cell
+    else:
+        cell[0] = int(loc[1:col_index])
+        cell[1] = int(loc[col_index + 1:leng])
     row = cell[0]
     col = cell[1]
-    cell.append(0)
     if row < 4:
         if col < 4:
             cell[2] = 1

@@ -200,6 +200,7 @@ class InsertTest(TestCase):
         ind3 = 112
         loc4 = 'r10c7'
         ind4 = 99
+        
         actualInd1 = insert._find_index(loc1)
         actualInd2 = insert._find_index(loc2)
         actualInd3 = insert._find_index(loc3)
@@ -275,18 +276,20 @@ class InsertTest(TestCase):
         self.assertEquals(expected_status, actual_status)
         
     def test_Insert_110_cell_case_sensitive(self):
-        parms = self.getParms1()
+        
         expected_result = self.getValidResult()
         expected_grid = expected_result['grid']
         expected_integrity = expected_result['integrity']
         expected_status = expected_result['status']
         for i in range(0,4):
+            parms = self.getParms1()
             if i == 1:
                 parms['cell'] = 'R7c9'
             elif i ==2:
                 parms['cell'] = 'r7C9'
             elif i == 3:
                 parms['cell'] = 'R7c9'
+            
             actual_result = insert._insert(parms)
             actual_grid = actual_result['grid']
             actual_integrity = actual_result['integrity']
