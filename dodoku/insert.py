@@ -155,8 +155,9 @@ def _check_input(parms):
         result = -2
     if 'value' in parms:
         try:
-            if int(parms['value']) < 1 or int(parms['value']) > 9 or type(parms['value']) is not str:
-                result = -3
+            if parms['value'] != None:
+                if int(parms['value']) < 1 or int(parms['value']) > 9 or type(parms['value']) is not str:
+                    result = -3
         except:
             result = -3
     try:
