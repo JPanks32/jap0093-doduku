@@ -95,7 +95,7 @@ class RecommendTest(TestCase):
     
     
     def test_Recomend_910_OutOfBounds(self):
-        expectedResult = {'status':'errror: invalid cell reference'}
+        expectedResult = {'status':'error: invalid cell reference'}
         grid = self.getGridString4()
         parms = { 'cell' : 'r1c10', 'grid': grid , 'integrity' : '47bc7544'}
         actualResult = recommend._recommend(parms)
