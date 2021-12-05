@@ -35,7 +35,7 @@ class RecommendTest(TestCase):
         return grid
     
     def getGridString5(self):
-        grid = '[0,-2,5,7,-1,6,9,-4,3,-8,0,-1,-9,0,0,0,0,-5,0,0,0,0,-3,0,0,-1,0,0,-3,0,0,0,0,-4,0,-6,-5,0,-9,0,0,0,0,0,-7,0,0,0,0,0,0,-2,-8,0,-2,0,0,-6,0,0,0,0,0,0,-1,-4,0,-6,0,0,0,-6,0,0,-3,0,0,0,-2,0,0,-1,0,-9,0,-4,0,-5,-7,0,0,0,0,0,0,-7,0,0,-5,0,0,-6,0,0,0,0,-9,0,-2,0,0,0,0,0,-4,0,-8,-7,0,-9,0,0,0,0,0,0,0,-5,0,0,-9,0,0,0,0,-4,0,0,-6,0,-3,-9,0,0,0,-6,0,0,-5,0,0,-3,-1]'
+        grid = '[a,-2,5,7,-1,6,9,-4,3,-8,0,-1,-9,0,0,0,0,-5,0,0,0,0,-3,0,0,-1,0,0,-3,0,0,0,0,-4,0,-6,-5,0,-9,0,0,0,0,0,-7,0,0,0,0,0,0,-2,-8,0,-2,0,0,-6,0,0,0,0,0,0,-1,-4,0,-6,0,0,0,-6,0,0,-3,0,0,0,-2,0,0,-1,0,-9,0,-4,0,-5,-7,0,0,0,0,0,0,-7,0,0,-5,0,0,-6,0,0,0,0,-9,0,-2,0,0,0,0,0,-4,0,-8,-7,0,-9,0,0,0,0,0,0,0,-5,0,0,-9,0,0,0,0,-4,0,0,-6,0,-3,-9,0,0,0,-6,0,0,-5,0,0,-3,-1]'
         return grid
     
     #  Happy path tests
@@ -91,6 +91,13 @@ class RecommendTest(TestCase):
          #  Sad path tests 
     #        test 910: tests invalid cell reference
     #            result: error message
+    #        test 920: tests Missing cell reference
+    #            result: error message
+    #        test 930: tests invalid grid
+    #            result: error message
+    #        test 940: tests invalid integrity
+    #            result: error message
+
     
     
     
@@ -108,4 +115,10 @@ class RecommendTest(TestCase):
         actualResult = recommend._recommend(parms)
         self.assertEqual(expectedResult, actualResult)
         
+    def test_Recomend_930_InvalidGrid(self):
+        expectedResult = {'status':'error: invalid cell reference'}
+        grid = self.getGridString5()
+        parms = { 'cell' : 'r1c10', 'grid': grid , 'integrity' : '47bc7544'}
+        actualResult = recommend._recommend(parms)
+        self.assertEqual(expectedResult, actualResult)
         pass
