@@ -173,7 +173,6 @@ def _check_input(parms):
         if len(parms['integrity']) != 8 or type(parms['integrity']) is not str:
             result = -4
         elif parms['integrity'] not in _find_integrity(parms['grid']):
-            print(_find_integrity(parms['grid']))
             result = -5
     except:
         result = -6
