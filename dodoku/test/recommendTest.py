@@ -121,4 +121,11 @@ class RecommendTest(TestCase):
         parms = { 'cell' : 'r1c10', 'grid': grid , 'integrity' : '47bc7544'}
         actualResult = recommend._recommend(parms)
         self.assertEqual(expectedResult, actualResult)
+        
+    def test_Recomend_940_BadIntegrity(self):
+        expectedResult = {'status':'error: invalid cell reference'}
+        grid = self.getGridString4()
+        parms = { 'cell' : 'r1c2', 'grid': grid , 'integrity' : '1234abcd'}
+        actualResult = recommend._recommend(parms)
+        self.assertEqual(expectedResult, actualResult)
         pass
