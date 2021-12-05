@@ -33,3 +33,12 @@ def _loadGrid(grid):
     return grid
 
 def _identifyValues(cell, grid):
+    result = []
+    for val in range(1,10):
+        if insert._can_insert(val, cell, grid) == 1:
+            result.append(val)
+    return result
+
+
+
+

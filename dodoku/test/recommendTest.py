@@ -34,7 +34,7 @@ class RecommendTest(TestCase):
         self.assertEqual(expectedResult, actualResult)
     
     def test_Recomend_020_ValidEntries(self):
-        expectedResult = [2,3,5,7,8]
+        expectedResult = [3,8]
         grid = self.getGrid()
         parms = { 'cell' : 'r7c9', 'grid': grid , 'integrity' : '2ab5f3e8'}
         actualResult = recommend._identifyValues(parms['cell'], parms['grid'])
