@@ -1,7 +1,7 @@
 import dodoku.insert as insert
 
 def _recommend(parms):
-    result = {'status': 'recommend stub'}
+    result ={'recommendation':[], 'status':'ok'}
     result_err = {'status': 'error: '}
     try:
         parms['grid'] = _loadGrid(parms['grid'])
@@ -23,6 +23,7 @@ def _recommend(parms):
     grid = parms['grid']
     loc = parms['cell']
     values = _identifyValues(loc, grid)
+    result['recommendation'] = values
     return result
 
 def _validateParms(parms):

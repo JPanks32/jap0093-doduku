@@ -40,7 +40,12 @@ class RecommendTest(TestCase):
         actualResult = recommend._identifyValues(parms['cell'], parms['grid'])
         self.assertEqual(expectedResult, actualResult)
 
-    
+    def test_Recomend_030_ValidInput(self):
+        expectedResult = {'recommendation' : [3,8], 'status' : 'ok'}
+        grid = self.getGrid()
+        parms = { 'cell' : 'r7c9', 'grid': grid , 'integrity' : 'g2ab5f3e8'}
+        actualResult = recommend._recommend(parms)
+        self.assertEqual(expectedResult, actualResult)
     
     
         pass
