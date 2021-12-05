@@ -23,6 +23,8 @@ class RecommendTest(TestCase):
     #  Happy path tests
     #        test 010: checks the validity of inputs
     #            result: True
+    #        test 020: calculates the valid entries
+    #            result: [2,3,5,7,8]
     
     def test_Recomend_010_CheckInput(self):
         expectedResult = True
@@ -30,5 +32,15 @@ class RecommendTest(TestCase):
         parms = { 'cell' : 'r7c9', 'grid': grid , 'integrity' : '2ab5f3e8'}
         actualResult = recommend._validateParms(parms)
         self.assertEqual(expectedResult, actualResult)
-        
+    
+    def test_Recomend_020_ValidEntries(self):
+        expectedResult = [2,3,5,7,8]
+        grid = self.getGrid()
+        parms = { 'cell' : 'r7c9', 'grid': grid , 'integrity' : '2ab5f3e8'}
+        actualResult = recommend._identifyValues(parms['cell'], parms['grid'])
+        self.assertEqual(expectedResult, actualResult)
+
+    
+    
+    
         pass
