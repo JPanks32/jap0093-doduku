@@ -118,7 +118,7 @@ class RecommendTest(TestCase):
     def test_Recomend_930_InvalidGrid(self):
         expectedResult = {'status':'error: invalid grid'}
         grid = self.getGridString5()
-        parms = { 'cell' : 'r1c10', 'grid': grid , 'integrity' : '47bc7544'}
+        parms = { 'cell' : 'r1c1', 'grid': grid , 'integrity' : '47bc7544'}
         actualResult = recommend._recommend(parms)
         self.assertEqual(expectedResult, actualResult)
         
