@@ -14,7 +14,7 @@ def _recommend(parms):
             result_err['status'] = 'error: invalid cell reference'
         elif valid_input == -2:
             result_err['status'] = 'error: missing cell reference'
-        elif valid_input == -4:
+        elif valid_input < -3:
             result_err['status'] = 'error: integrity mismatch'
         
         #result_err['status'] = 'error: invalid input'
