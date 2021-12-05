@@ -10,8 +10,6 @@ def _recommend(parms):
         return result_err
     valid_input = _validateParms(parms)
     if not valid_input == 1:
-        print(valid_input)
-        print("--")
         if valid_input == -1:
             result_err['status'] = 'error: invalid cell reference'
         elif valid_input == -2:

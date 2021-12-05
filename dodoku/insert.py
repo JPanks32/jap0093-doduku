@@ -182,10 +182,11 @@ def _check_input(parms):
 #returns -2 for fixed hint, -1 for conflict, 1 for success
 
 def _can_insert(val, loc, grid):
-    blocks, rows, cols = _organize(grid)
     index = _find_index(loc)
     if grid[index] < 0:
         return -2
+    grid[index] = 0
+    blocks, rows, cols = _organize(grid)
     if val == 0:
         return 1
     cell = _find_location(loc)

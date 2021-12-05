@@ -82,7 +82,7 @@ class RecommendTest(TestCase):
     def test_Recomend_060_ValidInputReservedSpotr1c3(self):
         expectedResult = {'recommendation' : [5], 'status' : 'ok'}
         grid = self.getGridString4()
-        parms = { 'cell' : 'r1c2', 'grid': grid , 'integrity' : '47bc7544'}
+        parms = { 'cell' : 'r1c3', 'grid': grid , 'integrity' : '47bc7544'}
         actualResult = recommend._recommend(parms)
         self.assertEqual(expectedResult, actualResult)
         
