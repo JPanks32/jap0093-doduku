@@ -2,14 +2,18 @@ import dodoku.insert as insert
 
 def _recommend(parms):
     result ={'recommendation':[], 'status':'ok'}
-    result_err = {'status': 'error: '}
+    result_err = {'status': 'error: 6'}
     try:
-        parms['grid'] = _loadGrid(parms['grid'])
+        print(parms['grid'])
+        parms['grid'] = insert._parse_grid(parms['grid'])
     except:
         result_err['status'] = 'error: invalid grid'
         return result_err
+    print(parms['grid'])
     valid_input = _validateParms(parms)
     if not valid_input == 1:
+        print('rtr')
+        print(valid_input)
         if valid_input == -1:
             result_err['status'] = 'error: invalid cell reference'
         elif valid_input == -2:
@@ -28,10 +32,6 @@ def _recommend(parms):
 
 def _validateParms(parms):
     return insert._check_input(parms)
-
-def _loadGrid(grid):
-    
-    return grid
 
 def _identifyValues(cell, grid):
     result = []
