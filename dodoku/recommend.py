@@ -4,16 +4,14 @@ def _recommend(parms):
     result ={'recommendation':[], 'status':'ok'}
     result_err = {'status': 'error: 6'}
     try:
-        print(parms['grid'])
         parms['grid'] = insert._parse_grid(parms['grid'])
     except:
         result_err['status'] = 'error: invalid grid'
         return result_err
-    print(parms['grid'])
     valid_input = _validateParms(parms)
     if not valid_input == 1:
-        print('rtr')
         print(valid_input)
+        print("--")
         if valid_input == -1:
             result_err['status'] = 'error: invalid cell reference'
         elif valid_input == -2:
