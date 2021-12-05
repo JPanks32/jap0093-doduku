@@ -123,7 +123,7 @@ class RecommendTest(TestCase):
         self.assertEqual(expectedResult, actualResult)
         
     def test_Recomend_940_BadIntegrity(self):
-        expectedResult = {'status':'error: invalid cell reference'}
+        expectedResult = {'status':'error: integrity mismatch'}
         grid = self.getGridString4()
         parms = { 'cell' : 'r1c2', 'grid': grid , 'integrity' : '1234abcd'}
         actualResult = recommend._recommend(parms)
