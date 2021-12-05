@@ -102,7 +102,7 @@ class RecommendTest(TestCase):
         self.assertEqual(expectedResult, actualResult)
         
     def test_Recomend_920_MissingCell(self):
-        expectedResult = {'status':'error: invalid cell reference'}
+        expectedResult = {'status':'error: missing cell reference'}
         grid = self.getGridString4()
         parms = {'grid': grid , 'integrity' : '47bc7544'}
         actualResult = recommend._recommend(parms)
